@@ -26,6 +26,7 @@ cmpType cmpAll[] = { cmp0, cmp1, cmp2, cmp3 };
 char by[] = "ACME";
 
 int main() {
+    students.erase()
     cin >> n >> m;
     for (int i = 0; i < n; i++) {
         cin >> student.id >> student.c >> student.m >> student.e;
