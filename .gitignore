@@ -3,3 +3,4 @@
 *.exe
 node_modules
 test.cpp
+*.out
