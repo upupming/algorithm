@@ -12,7 +12,13 @@ using namespace std;
 class Solution {
    public:
     string convert(string s, int numRows) {
-        char m[1010][1010] = {0};
+        char m[1010][1010];
+        // LeetCode not support this:
+        // fill(m[0], m[0] + 1010 * 1010, 0);
+        // LeetCode support this: https://stackoverflow.com/a/3948314/8242705
+        // fill(&m[0][0], &m[0][0] + sizeof(m) / sizeof(m[0][0]), 0);
+        // fill_n(&m[0][0], sizeof(m) / sizeof(m[0][0]), 0);
+        fill_n(&m[0][0], 1010 * 1010, 0);
         int maxJ = 0;
 
         int delta_i = 1, delta_j = 0;
