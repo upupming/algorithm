@@ -1,5 +1,5 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
@@ -15,7 +15,7 @@ int main() {
             j = n - 1 - i;
             if (i + 1 > a[j]) break;
         }
-        
+
         // cout << "ans: ";
         cout << i << endl;
     }
