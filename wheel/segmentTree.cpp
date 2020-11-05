@@ -11,7 +11,7 @@ class SegmentTree {
    public:
     SegmentTree(const vector<int>& arr) {
         int n = arr.size();
-        int m = 2 * ceil(log2(n)) - 1;
+        int m = 2 * pow(2, ceil(log2(n))) - 1;
         for (int i = 0; i < m; i++) {
             segTreeArr.push_back(INT_MAX);
         }
