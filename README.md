@@ -1,26 +1,34 @@
 # algorithm
 
-Still practicing...
+> Forked from [liuchuo/PAT](https://github.com/liuchuo/PAT).
 
-## PAT
+主要存放训练刷题时的代码，有些有 README，有些源代码里面有注释可以看。
 
-Forked from [liuchuo/PAT](https://github.com/liuchuo/PAT).
+- 算法轮子 [wheel](wheel)
+- Google KickStart [kick-start](kick-start)
+- LeetCode [leetcode](leetcode)
+- 伪代码 [pseudoCode](pseudoCode)
+- 其他的都是之前刷 PAT 时候的题目
 
-**耶耶耶～～PAT甲级与乙级的所有题目都已更新完成～撒花撒花～～我不管，反正我最萌～**
+## 关于算法复杂度
 
+在竞赛中，一般算机一秒能运行5 x 10^8次汁算，如果题目給出的时间限制カ1s,那么你选择的算法执行的汁算次数最多应该在10^8量级オ有可能解决这个题目。一般 O(n)的算法能解决的数据范围在n < 10^8。
 
+- O(n *logn)的算法能解决的数据范围在n <= 10^6。
+- O(n*sqrt(n) )的算法能解决的数据范围在n < 10^5。
+- O(n^2)的算法能解决的数据范围在n<5000。
+- O(n^3)的算法能解决的数据范围在n <300。
+- O(2^n)的算法能解决的数据范围在n < 25。
+- O(n!)的算法能解决的数据范围在n < 11。
 
-PAT的这个仓库我一直在维护，包括每次考试后新出的题目都会第一时间更新，不出意外的话会一直更新下去，甲级部分基本都写了思路分析，做得很用心，力争做github的PAT题解仓库中最完善、最用心的，希望能帮助到大家，求star支持～
+以上范围仅供参考，实际中还要考虑每种算法的常数。
 
-如果仓库中已有代码有问题，欢迎通过提issue方式给我发送bug report，并附上你认为的正确的题解代码～
+## 推荐一些优质的资源
 
-欢迎各位大佬提供Java、Python等其他语言的题解，直接给我发pull request就可以啦～本仓库可以接受大括号放在下一行的异教徒，但不接受格式混乱、空格使用不规范的代码～您可以点击[这里](https://zh-google-styleguide.readthedocs.io/en/latest/)查看《Google 开源项目风格指南》文档～
-
-### 致谢
-
-- 感谢[@fs19910227](https://github.com/fs19910227)为PAT甲级提供的部分Java版本代码
-- 感谢[@zhuzihao-hz](https://github.com/zhuzihao-hz)为GPLT提供的部分Python版本代码
-- 感谢[@littlesevenmo](https://github.com/littlesevenmo)为PAT甲级多次提供的更高效的解法
-- 感谢[@JoyHwong](https://github.com/JoyHwong)为PAT乙级提供的部分Java版本代码
-- 感谢[@聪明可爱的小学弟-谢民皆](https://github.com/xminjie)整理的部分README.md
-
+- [Errichto 的 YouTube](https://www.youtube.com/channel/UCBr_Fu6q9iHYQCh13jmpbrg)
+- [William Lin 的 YouTube](https://www.youtube.com/channel/UCKuDLsO0Wwef53qdHPjbU2Q)
+- [lee215 的 YouTube](https://www.youtube.com/channel/UCUBt1TDQTl1atYsscVoUzoQ)、[lee215 的公众号](https://mp.weixin.qq.com/s/5tcPvmaga1ia31lYqYbNYA)
+- [OI WiKi](https://github.com/OI-wiki/OI-wiki)
+- [ACM 模板库](https://github.com/F0RE1GNERS/template)
+- [Tushar Roy 的 YouTube](https://www.youtube.com/user/tusharroy2525)、[Tushar Roy 的代码库](https://github.com/mission-peace/interview)
+- [栗子的 KickStart 题解](https://github.com/lzy960601/Google_Coding_Competitions)
