@@ -1,4 +1,5 @@
 // https://www.youtube.com/watch?v=ZBHKZF5w4YU&ab_channel=TusharRoy-CodingMadeSimple
+// RMQ 相关算法
 
 #include <climits>
 #include <cmath>
