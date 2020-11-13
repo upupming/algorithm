@@ -33,3 +33,4 @@
 - [Tushar Roy 的 YouTube](https://www.youtube.com/user/tusharroy2525)、[Tushar Roy 的代码库](https://github.com/mission-peace/interview)
 - [栗子的 KickStart 题解](https://github.com/lzy960601/Google_Coding_Competitions)
 - [Range Minimum Query - TopCoder](https://www.topcoder.com/community/competitive-programming/tutorials/range-minimum-query-and-lowest-common-ancestor/)
+- [Pecco 的算法学习笔记](https://www.zhihu.com/column/c_1182444932760125440)
