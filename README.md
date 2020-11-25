@@ -9,12 +9,13 @@
 - LeetCode [leetcode](leetcode)
 - 伪代码 [pseudoCode](pseudoCode)
 - 其他的都是之前刷 PAT 时候的题目
+- 算法竞赛进阶指南 [ACWing](acwing)
 
 ## 关于算法复杂度
 
-在竞赛中，一般算机一秒能运行5 x 10^8次汁算，如果题目給出的时间限制カ1s,那么你选择的算法执行的汁算次数最多应该在10^8量级オ有可能解决这个题目。一般 O(n)的算法能解决的数据范围在n < 10^8。
+在竞赛中，一般算机一秒能运行5 x 10^8次汁算，如果题目給出的时间限制カ1s,那么你选择的算法执行的计算次数最多应该在10^8量级オ有可能解决这个题目。一般 O(n)的算法能解决的数据范围在n < 10^8。
 
-- O(n *logn)的算法能解决的数据范围在n <= 10^6。
+- O(n*logn)的算法能解决的数据范围在n <= 10^6。
 - O(n*sqrt(n) )的算法能解决的数据范围在n < 10^5。
 - O(n^2)的算法能解决的数据范围在n<5000。
 - O(n^3)的算法能解决的数据范围在n <300。
@@ -25,6 +26,7 @@
 
 ## 推荐一些优质的资源
 
+- [《算法竞赛进阶指南》打卡活动](https://www.acwing.com/activity/content/introduction/6/)
 - [Errichto 的 YouTube](https://www.youtube.com/channel/UCBr_Fu6q9iHYQCh13jmpbrg)
 - [William Lin 的 YouTube](https://www.youtube.com/channel/UCKuDLsO0Wwef53qdHPjbU2Q)
 - [lee215 的 YouTube](https://www.youtube.com/channel/UCUBt1TDQTl1atYsscVoUzoQ)、[lee215 的公众号](https://mp.weixin.qq.com/s/5tcPvmaga1ia31lYqYbNYA)
