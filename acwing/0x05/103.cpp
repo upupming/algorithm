@@ -4,6 +4,8 @@
 
 首先将 a 扫一遍，构建 d 数组。同时建立 e 数组表示语言被多少科学家所懂得。
 然后分别扫描 b 和 c 即可。感觉其实也可以不用构建 d，直接使用 map 实现。
+
+离散化模板
 */
 #include <algorithm>
 #include <iostream>
@@ -46,6 +48,7 @@ void solve2() {
     sort(a, a + n);
     // 使用离散化求解，构建一个数组，将原有值映射到较小的范围
     for (int i = 0; i < n; i++) {
+        // 也可以先对 a 用 unique 进行去重
         if (i == 0 || a[i] != a[i - 1]) d[t++] = a[i];
     }
     // 构建 e 数组

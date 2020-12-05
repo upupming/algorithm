@@ -14,6 +14,7 @@ using namespace std;
 
 int k, n, m, a[500010], b[500010], c[500010];
 long long t;
+// 归并排序模板
 // 从 b 归并到 a
 void merge(int l, int mid, int r) {
     int i = l, j = mid + 1, k = l;
