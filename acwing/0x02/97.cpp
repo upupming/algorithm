@@ -7,6 +7,7 @@ long long a, b;
 map<long long, long long> factor;
 const long long MOD = 9901;
 
+// 取余的快速幂
 long long powWithMod(int p, int c) {
     p = p % MOD;
     long long ans = 1;
