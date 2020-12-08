@@ -59,8 +59,24 @@ vector<int> max_vec(vector<int> a, vector<int> b) {
     if (vector<int>(a.rbegin(), a.rend()) > vector<int>(b.rbegin(), b.rend())) return a;
     return b;
 }
+// https://www.acwing.com/blog/content/277/
+// C = A + B, A >= 0, B >= 0
+vector<int> add(vector<int> &A, vector<int> &B) {
+    if (A.size() < B.size()) return add(B, A);
 
-int n, a, b;
+    vector<int> C;
+    int t = 0;
+    for (int i = 0; i < A.size(); i++) {
+        t += A[i];
+        if (i < B.size()) t += B[i];
+        C.push_back(t % 10);
+        t /= 10;
+    }
+
+    if (t) C.push_back(t);
+    return C;
+}
+
 // pair<乘积, pair<左手, 右手>>
 pair<int, pair<int, int>> c[1010];
 int main() {
