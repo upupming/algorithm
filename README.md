@@ -27,6 +27,7 @@
 ## 推荐一些优质的资源
 
 - [《算法竞赛进阶指南》打卡活动](https://www.acwing.com/activity/content/introduction/6/)
+- [yxc的B站](https://space.bilibili.com/7836741/)
 - [Errichto 的 YouTube](https://www.youtube.com/channel/UCBr_Fu6q9iHYQCh13jmpbrg)
 - [William Lin 的 YouTube](https://www.youtube.com/channel/UCKuDLsO0Wwef53qdHPjbU2Q)
 - [lee215 的 YouTube](https://www.youtube.com/channel/UCUBt1TDQTl1atYsscVoUzoQ)、[lee215 的公众号](https://mp.weixin.qq.com/s/5tcPvmaga1ia31lYqYbNYA)
