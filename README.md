@@ -4,12 +4,12 @@
 
 主要存放训练刷题时的代码，有些有 README，有些源代码里面有注释可以看。
 
+- 算法竞赛进阶指南 [ACWing](acwing)
 - 算法轮子 [wheel](wheel)
 - Google KickStart [kick-start](kick-start)
 - LeetCode [leetcode](leetcode)
 - 伪代码 [pseudoCode](pseudoCode)
 - 其他的都是之前刷 PAT 时候的题目
-- 算法竞赛进阶指南 [ACWing](acwing)
 
 ## 关于算法复杂度
 
