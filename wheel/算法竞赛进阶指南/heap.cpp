@@ -1,5 +1,5 @@
 // 二叉堆模板，书上下标从 1 开始索引，这个例子是最大堆
-int heap[N], n;
+int heap[N], hTot;
 // 向上调整
 void up(int p) {
     while (p > 1) {
@@ -11,17 +11,17 @@ void up(int p) {
     }
 }
 void insert(int val) {
-    heap[++n] = val;
-    up(n);
+    heap[++hTot] = val;
+    up(hTot);
 }
 int getTop() { return heap[1]; }
 // 向下调整
 void down(int p) {
     // 左子节点
     int s = 2 * p;
-    while (s <= n) {
+    while (s <= hTot) {
         // 左右子节点中取较大者
-        if (s < n && heap[s] < heap[s + 1]) s++;
+        if (s < hTot && heap[s] < heap[s + 1]) s++;
         if (heap[p] < heap[s]) {
             swap(heap[p], heap[s]);
             p = s, s = 2 * p;
@@ -30,10 +30,10 @@ void down(int p) {
     }
 }
 void extract() {
-    heap[1] = heap[n--];
+    heap[1] = heap[hTot--];
     down(1);
 }
 void remove(int k) {
-    heap[k] = heap[n--];
+    heap[k] = heap[hTot--];
     up(k), down(k);
 }
