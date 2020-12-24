@@ -78,6 +78,7 @@ vector<int> add(vector<int> &A, vector<int> &B) {
 }
 
 // pair<乘积, pair<左手, 右手>>
+int n, a, b;
 pair<int, pair<int, int>> c[1010];
 int main() {
     cin >> n >> a >> b;
