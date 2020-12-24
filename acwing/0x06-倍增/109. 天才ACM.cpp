@@ -4,7 +4,7 @@
 
 固定左边界之后，倍增地枚举右边界即可
 
-不用归并排序优化的话，cout/cin 会 TLF，scanf/printf 不会
+不用归并排序优化的话，cout/cin 会 TLE，scanf/printf 不会
 
 下面是我经过归并排序优化之后的版本
 */
