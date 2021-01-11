@@ -14,7 +14,7 @@ const int N = 9;
 
 // 第 i 行、列、九宫格可以填的数的 bit 表示
 // h[2^i] = i，cnt[i] = i 有多少个 1，
-// bitset 不支持 lowbit 运算，因此转为直接使用 int
+// 直接使用 int 的话 lowbit 计算更方便直接 (n & -n)，bitset 的 lowbit 运算要用 (n & (~n + 1))，
 int row[N], col[N], cell[N], h[1 << N], cnt[1 << N];
 string s;
 inline void flip(int x, int y, int z) {
