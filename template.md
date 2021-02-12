@@ -76,3 +76,12 @@ for (int i = head[x]; i; i = Next[i]) {
     // 找到了一条有向边 (x, y)，权值为 z
 }
 ```
+
+## gcd
+
+```cpp
+// 欧几里得算法
+int gcd(int a, int b) {
+    return b ? gcd(b, a % b) : a;
+}
+```
