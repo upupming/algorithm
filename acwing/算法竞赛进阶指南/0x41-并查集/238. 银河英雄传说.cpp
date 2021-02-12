@@ -17,7 +17,7 @@ void init() {
         sz[i] = 1;
     }
 }
-// Get 操作，时间复杂度为反阿克曼函数，可以认为是常数
+// Get 操作
 int get(int x) {
     if (x == fa[x]) return x;
     // 递归计算 d[fa[x]]
@@ -27,7 +27,7 @@ int get(int x) {
     // 路径压缩，fa 直接赋值为代表元素
     return fa[x] = root;
 }
-// Merge 操作，同上，可以认为时间复杂度为常数
+// Merge 操作
 // 规定 x 放在 y 的后面
 void merge(int x, int y) {
     int fx = get(x), fy = get(y);
