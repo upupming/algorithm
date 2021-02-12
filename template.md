@@ -18,6 +18,40 @@ int qpow(int a, int b, int p) {
 }
 ```
 
+## 离散化
+
+如果之后还需要进行查询，可以映射成有序数组。如果之后无需查询，直接映射成无需数组就可以了。
+
+```cpp
+// 离散化
+void discrete() {
+    sort(a + 1, a + n + 1);
+    for (int i = 1; i <= n; i++) {
+        // 也可用 STL 的 unique 函数
+        if (i == 1 || a[i] != a[i - 1])
+            b[++m] = a[i];
+    }
+}
+// 查询 x 映射为哪个 1-m 之间的整数
+int query(int x) {
+    return lower_bound(b + 1, b + m + 1, x) - b;
+}
+
+// ----------
+
+// 也可使用 map，但是一般会比数组慢一些
+unordered_map<int, int> mp;
+void discrete() {
+    for (int i = 1; i <=n; i++) {
+        if (!mp.count(a[i]))
+            mp[a[i]] = ++m;
+    }
+}
+int query(int x) {
+    return mp[x];
+}
+```
+
 ## Trie 树
 
 - AcWing 142 - 144, 1414
@@ -77,7 +111,7 @@ for (int i = head[x]; i; i = Next[i]) {
 }
 ```
 
-## gcd
+## 最大公约数
 
 ```cpp
 // 欧几里得算法
@@ -85,3 +119,39 @@ int gcd(int a, int b) {
     return b ? gcd(b, a % b) : a;
 }
 ```
+
+另外，最小公倍数 lcm(a, b) = a * b / gcd(a, b)。
+
+## 并查集
+
+```cpp
+// sz 表示节点的秩，这里定义为节点的元素个数
+int fa[N], sz[N];
+void init() {
+    // 初始化
+    for (int i = 1; i <= N; i++) {
+        fa[i] = i;
+        sz[i] = 1;
+    }
+}
+// Get 操作，时间复杂度为反阿克曼函数，可以认为是常数
+int get(int x) {
+    if (x == fa[x]) return x;
+    // 路径压缩，fa 直接赋值为代表元素
+    return fa[x] = get(fa[x]);
+}
+// Merge 操作，同上，可以认为时间复杂度为常数
+void merge(int x, int y) {
+    int fx = get(x), fy = get(y);
+    if (fx == fy) return;
+    if (sz[fx] < sz[fy]) {
+        fa[fx] = fy;
+        sz[fy] += sz[fx];
+    } else {
+        fa[fy] = fx;
+        sz[fx] += sz[fy];
+    }
+}
+```
+
+另外还有「边带权」和「拓展域」的并查集，在原有并查集的基础上维护一些具有传递关系的属性。
