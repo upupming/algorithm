@@ -209,6 +209,8 @@ void merge(int x, int y) {
 
 RMQ 常用算法，参见蓝书 0x42。`c[x]` 保存序列 a 的区间 `[x - lowbit(x) + 1, x]` 中所有数的和。`c[x]` 的父节点为 `c[x + lowbit(x)]`
 
+支持「单点增加」和「区间查询」，结合差分可以支持「区间增加」。
+
 ```cpp
 // 查询前缀和：查询序列 a 第 1~x 个数的和
 int ask(int x) {
@@ -219,6 +221,71 @@ int ask(int x) {
 // 单点增加：给序列中的一个数 a[x] 加上 y
 // 算法：自下而上每个节点都要增加 y
 void add(int x, int y) {
-    for (; x <= N; x += x & -x) c[x] += y;
+    for (; x <= n; x += x & -x) c[x] += y;
 }
 ```
+
+## 线段树
+
+RMQ 常用算法，树状数组基于区间划分，线段树则是基于分治。
+
+```cpp
+struct SegmentTree {
+    int l, r;
+    int dat;
+} t[N * 4];
+
+// 线段树的建树，时间复杂度：O(N)
+// p 表示节点编号，[l, r] 表示节点所代表的区间
+void build(int p, int l, int r) {
+    t[p].l = l, t[p].r = r;
+    // 叶节点，表示单个元素
+    if (l == r) { t[p].dat = a[l]; return; }
+    int mid = l + r >> 1;
+    // 左子节点：编号为 2*p，代表区间 [l, mid]
+    build(2*p, l, mid);
+    // 右子节点：编号为 2*p+1，代表区间 [mid+1, r]
+    build(2*p+1, mid+1, r);
+    // 从下往上合并更新信息
+    t[p].dat = max(t[2*p].dat, t[2*p+1].dat);
+}
+
+// 调用入口
+build(1, 1, n);
+
+// 线段树的单点修改，时间复杂度：O(log N)
+// 将 a[x] 的值修改为 v
+void change(int p, int x, int v) {
+    // 找到叶节点
+    if (t[p].l == t[p].r) { t[p].dat = v; return; }
+    int mid = (t[p].l + t[p].r) >> 1;
+    // x 属于左半区间
+    if (x <= mid) change(2*p, x, v);
+    // x 属于右半区间
+    else change(2*p+1, x, v);
+    // 从下往上合并更新信息
+    t[p].dat = max(t[2*p].dat, t[2*p+1].dat);
+}
+
+// 调用入口
+change(1, x, v);
+
+// 线段树的区间查询，时间复杂度：O(log N)
+// 查询序列 a 在区间 [l, r] 上的最大值
+int ask(int p, int l, int r) {
+    // 查询区间 [l, r] 完全包含节点 p 所代表的的区间
+    if (l <= t[p].l && r >= t[p].r) return t[p].dat;
+    int mid = (t[p].l + t[p].r) >> 1;
+    // 负无穷大
+    int val = -(1<<30);
+    // 左子节点 [t[p].l, mid] 与查询 [l, r] 有重合
+    if (l <= mid) val = max(val, ask(2*p, l, r));
+    // 右子节点 [mid+1, t[p].r] 与查询 [l, r] 有重合
+    if (r >= mid + 1) val = max(val, ask(2*p+1, l, r));
+    return val;
+}
+```
+
+## 致谢
+
+本模板多数出自《算法竞赛进阶指南》（蓝书）和 AcWing 社区，非常感谢蓝书作者、AcWing 社区的 y 总和其他的小伙伴。
