@@ -18,6 +18,55 @@ int qpow(int a, int b, int p) {
 }
 ```
 
+## lowbit 运算
+
+lowbit 运算返回的数是二进制表示下，原来数的最低位的 1 及后边所有的 0 组成的新的数。
+
+```cpp
+lowbit(1010_2) = lowbit(10_2)
+
+lowbit(n) = n & (~n + 1) = n & -n
+
+~n == -1 - n => ~n + 1 == -n
+
+// 预计算 H[2^k] = k，Hash 替代 log 运算
+for (int i = 0; i <= 20; i++) H[1 << i] = i;
+// 找出整数 n 的二进制表示下所有是 1 的位
+while (n > 0) {
+    cout << H[n & -n] << " ";
+    n -= n & -n;
+}
+cout << endl;
+// 将区间 [1, n] 分为 O(log n) 个小区间，每个区间长度都是当前值的 lowbit
+while (x > 0) {
+    cout << (x - (x & -x) + 1) << ", "<< x << endl;
+    x -= x & -x;
+}
+```
+
+## 归并排序
+
+```cpp
+void merge_sort(int q[], int l, int r)
+{
+    if (l >= r) return;
+
+    int mid = l + r >> 1;
+    merge_sort(q, l, mid);
+    merge_sort(q, mid + 1, r);
+
+    int k = 0, i = l, j = mid + 1;
+    while (i <= mid && j <= r)
+        if (q[i] <= q[j]) tmp[k ++ ] = q[i ++ ];
+        else tmp[k ++ ] = q[j ++ ];
+
+    while (i <= mid) tmp[k ++ ] = q[i ++ ];
+    while (j <= r) tmp[k ++ ] = q[j ++ ];
+
+    for (i = l, j = 0; i <= r; i ++, j ++ ) q[i] = tmp[j];
+}
+```
+
 ## 离散化
 
 如果之后还需要进行查询，可以映射成有序数组。如果之后无需查询，直接映射成无需数组就可以了。
@@ -126,10 +175,10 @@ int gcd(int a, int b) {
 
 ```cpp
 // sz 表示节点的秩，这里定义为节点的元素个数
-int fa[N], sz[N];
+int fa[N], sz[N], n;
 void init() {
     // 初始化
-    for (int i = 1; i <= N; i++) {
+    for (int i = 1; i <= n; i++) {
         fa[i] = i;
         sz[i] = 1;
     }
@@ -155,3 +204,21 @@ void merge(int x, int y) {
 ```
 
 另外还有「边带权」和「拓展域」的并查集，在原有并查集的基础上维护一些具有传递关系的属性。
+
+## 树状数组
+
+RMQ 常用算法，参见蓝书 0x42。`c[x]` 保存序列 a 的区间 `[x - lowbit(x) + 1, x]` 中所有数的和。`c[x]` 的父节点为 `c[x + lowbit(x)]`
+
+```cpp
+// 查询前缀和：查询序列 a 第 1~x 个数的和
+int ask(int x) {
+    int ans = 0;
+    for (; x; x -= x & -x) ans += c[x];
+    return ans;
+}
+// 单点增加：给序列中的一个数 a[x] 加上 y
+// 算法：自下而上每个节点都要增加 y
+void add(int x, int y) {
+    for (; x <= N; x += x & -x) c[x] += y;
+}
+```
