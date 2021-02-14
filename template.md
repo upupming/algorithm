@@ -240,14 +240,17 @@ struct SegmentTree {
 void build(int p, int l, int r) {
     t[p].l = l, t[p].r = r;
     // 叶节点，表示单个元素
-    if (l == r) { t[p].dat = a[l]; return; }
+    if (l == r) {
+        t[p].dat = a[l];
+        return;
+    }
     int mid = l + r >> 1;
     // 左子节点：编号为 2*p，代表区间 [l, mid]
-    build(2*p, l, mid);
+    build(2 * p, l, mid);
     // 右子节点：编号为 2*p+1，代表区间 [mid+1, r]
-    build(2*p+1, mid+1, r);
+    build(2 * p + 1, mid + 1, r);
     // 从下往上合并更新信息
-    t[p].dat = max(t[2*p].dat, t[2*p+1].dat);
+    t[p].dat = max(t[2 * p].dat, t[2 * p + 1].dat);
 }
 
 // 调用入口
@@ -257,14 +260,18 @@ build(1, 1, n);
 // 将 a[x] 的值修改为 v
 void change(int p, int x, int v) {
     // 找到叶节点
-    if (t[p].l == t[p].r) { t[p].dat = v; return; }
+    if (t[p].l == t[p].r) {
+        t[p].dat = v;
+        return;
+    }
     int mid = (t[p].l + t[p].r) >> 1;
     // x 属于左半区间
-    if (x <= mid) change(2*p, x, v);
+    if (x <= mid) change(2 * p, x, v);
     // x 属于右半区间
-    else change(2*p+1, x, v);
+    else
+        change(2 * p + 1, x, v);
     // 从下往上合并更新信息
-    t[p].dat = max(t[2*p].dat, t[2*p+1].dat);
+    t[p].dat = max(t[2 * p].dat, t[2 * p + 1].dat);
 }
 
 // 调用入口
@@ -277,14 +284,90 @@ int ask(int p, int l, int r) {
     if (l <= t[p].l && r >= t[p].r) return t[p].dat;
     int mid = (t[p].l + t[p].r) >> 1;
     // 负无穷大
-    int val = -(1<<30);
+    int val = -(1 << 30);
     // 左子节点 [t[p].l, mid] 与查询 [l, r] 有重合
-    if (l <= mid) val = max(val, ask(2*p, l, r));
+    if (l <= mid) val = max(val, ask(2 * p, l, r));
     // 右子节点 [mid+1, t[p].r] 与查询 [l, r] 有重合
-    if (r >= mid + 1) val = max(val, ask(2*p+1, l, r));
+    if (r >= mid + 1) val = max(val, ask(2 * p + 1, l, r));
     return val;
 }
 ```
+
+### 支持区间修改的线段树（延迟标记）
+
+区间修改的时间复杂度可以通过延迟标记从 O(N) 降为 O(log N)。
+
+```cpp
+// 注意：有延迟标记的节点，本身已经完成了数据更新，只是没有传递给子节点
+struct SegmentTree {
+    int l, r;
+    long long dat, flag;
+#define l(x) tree[x].l
+#define r(x) tree[x].r
+#define dat(x) tree[x].dat
+#define flag(x) tree[x].flag
+} tree[N * 4];
+int a[N];
+
+void build(int p, int l, int r) {
+    l(p) = l, r(p) = r;
+    if (l == r) {
+        dat(p) = a[l];
+        return;
+    }
+    int mid = l + r >> 1;
+    build(2 * p, l, mid);
+    build(2 * p + 1, mid + 1, r);
+    dat(p) = dat(2 * p) + dat(2 * p + 1);
+}
+void spread(int p) {
+    // 节点 p 有延迟标记的话
+    if (flag(p)) {
+        // 更新左子节点信息，延迟值 * 区间长度等于节点的增加量
+        dat(2 * p) += flag(p) * (r(2 * p) - l(2 * p) + 1);
+        // 更新右子节点信息
+        dat(2 * p + 1) += flag(p) * (r(2 * p + 1) - l(2 * p + 1) + 1);
+        // 给左子节点打延迟标记
+        flag(2 * p) += flag(p);
+        // 给右子节点打延迟标记
+        flag(2 * p + 1) += flag(p);
+        // 清除 p 的标记
+        flag(p) = 0;
+    }
+}
+
+void change(int p, int l, int r, int d) {
+    // 完全覆盖
+    if (l <= l(p) && r >= r(p)) {
+        // 更新节点信息，每个节点增加量 d * 区间长度 = 节点增加量
+        dat(p) += (long long)d * (r(p) - l(p) + 1);
+        // 给节点打延迟标记
+        flag(p) += d;
+        return;
+    }
+    // 因为即将访问下面的节点了，必须先下传延迟标记
+    spread(p);
+    int mid = (l(p) + r(p)) >> 1;
+    // 和左子节点有相交部分
+    if (l <= mid) change(2 * p, l, r, d);
+    // 和右子节点有相交部分
+    if (r >= mid + 1) change(2 * p + 1, l, r, d);
+    dat(p) = dat(2 * p) + dat(2 * p + 1);
+}
+
+long long ask(int p, int l, int r) {
+    if (l <= l(p) && r >= r(p)) return dat(p);
+    // 因为即将访问下面的节点了，必须先下传延迟标记
+    spread(p);
+    int mid = l + r >> 1;
+    long long val = 0;
+    if (l <= mid) val += ask(2 * p, l, r);
+    if (r >= mid + 1) val += ask(2 * p + 1, l, r);
+    return val;
+}
+```
+
+- AcWing 243
 
 ## 致谢
 
