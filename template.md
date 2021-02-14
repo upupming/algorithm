@@ -369,6 +369,21 @@ long long ask(int p, int l, int r) {
 
 - AcWing 243
 
+## 质筛选
+
+```cpp
+// Eratosthenes 筛法
+void primes(int n) {
+    // 合数标记
+    memset(v, 0, sizeof v);
+    for (int i = 2; i <= n; i++) {
+        if (v[i]) continue;
+        cout << i << endl;
+        for (int j = i; j <= n/i; j++) v[i*j] = 1;
+    }
+}
+```
+
 ## 致谢
 
 本模板多数出自《算法竞赛进阶指南》（蓝书）和 AcWing 社区，非常感谢蓝书作者、AcWing 社区的 y 总和其他的小伙伴。
