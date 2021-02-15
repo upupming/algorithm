@@ -5,28 +5,48 @@
 #include <ctime>
 #include <iostream>
 const int N = 1e4;
-// const
+const std::string bf = "./kick-start/2020/RoundC/D.\\ Candies-BF.cpp";
+const std::string algo = "./kick-start/2020/RoundC/D.\\ Candies.cpp";
+
+/*
+封装一下 `system`，支持 ctrl + c 退出整个对拍程序
+https://stackoverflow.com/a/3771792/8242705
+*/
+int mySystem(const char* command) {
+    int result = system(command);
+    if (WIFEXITED(result)) {
+        // printf("Exited normally with status %d\n", WEXITSTATUS(result));
+    } else if (WIFSIGNALED(result)) {
+        printf("Exited with signal %d\n", WTERMSIG(result));
+        exit(1);
+    } else {
+        printf("Not sure how we exited.\n");
+    }
+    return result;
+}
 
 int main() {
-    system("g++ ./random.cpp -o random.out");
-    system("g++ -std=c++11 ./kick-start/2020/RoundC/D.\\ Candies-BF.cpp -o bf.out");
-    system("g++ -std=c++11 ./kick-start/2020/RoundC/D.\\ Candies.cpp -o algo.out");
+    mySystem("g++ ./random.cpp -o random.out");
+    mySystem(
+        ("g++ -std=c++11 -o bf.out " + bf).c_str());
+    mySystem(
+        ("g++ -std=c++11 -o algo.out " + algo).c_str());
     for (int T = 1; T <= N; T++) {
         // 生成随机数据
-        system("./random.out > data.in");
+        mySystem("./random.out > data.in");
         // 记录运行的 CPU 时间
         double st = clock();
         // 暴力解法输出正确答案
-        system("./bf.out < data.in > data.ans");
+        mySystem("./bf.out < data.in > data.ans");
         double ed = clock();
         // 优化解法输出待检查答案
-        system("./algo.out < data.in > data.out");
+        mySystem("./algo.out < data.in > data.out");
 
-        if (system("diff data.out data.ans")) {
-            puts("Wrong Answer");
-            return 0;
+        if (mySystem("diff data.out data.ans")) {
+            puts("\033[1;31mWrong Answer\033[0m");
+            return -1;
         } else {
-            printf("Accepted, 测试点 #%d, 用时 %.01f\n", T, ed - st);
+            printf("\033[1;32mAccepted\033[0m, 测试点 #%d, 用时 %.01f\n", T, ed - st);
         }
     }
     return 0;
