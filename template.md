@@ -51,7 +51,7 @@ void merge_sort(int q[], int l, int r)
 {
     if (l >= r) return;
 
-    int mid = l + r >> 1;
+    int mid = (l + r) >> 1;
     merge_sort(q, l, mid);
     merge_sort(q, mid + 1, r);
 
@@ -244,7 +244,7 @@ void build(int p, int l, int r) {
         t[p].dat = a[l];
         return;
     }
-    int mid = l + r >> 1;
+    int mid = (l + r) >> 1;
     // 左子节点：编号为 2*p，代表区间 [l, mid]
     build(2 * p, l, mid);
     // 右子节点：编号为 2*p+1，代表区间 [mid+1, r]
@@ -315,7 +315,7 @@ void build(int p, int l, int r) {
         dat(p) = a[l];
         return;
     }
-    int mid = l + r >> 1;
+    int mid = (l + r) >> 1;
     build(2 * p, l, mid);
     build(2 * p + 1, mid + 1, r);
     dat(p) = dat(2 * p) + dat(2 * p + 1);
@@ -359,7 +359,7 @@ long long ask(int p, int l, int r) {
     if (l <= l(p) && r >= r(p)) return dat(p);
     // 因为即将访问下面的节点了，必须先下传延迟标记
     spread(p);
-    int mid = l + r >> 1;
+    int mid = (l + r) >> 1;
     long long val = 0;
     if (l <= mid) val += ask(2 * p, l, r);
     if (r >= mid + 1) val += ask(2 * p + 1, l, r);

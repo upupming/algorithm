@@ -7,3 +7,4 @@ test.cpp
 *.log
 Info.plist
 *.in
+data.ans
