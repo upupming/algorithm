@@ -178,7 +178,7 @@ int gcd(int a, int b) {
 int fa[N], sz[N], n;
 void init() {
     // 初始化
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i <= n; i++) {
         fa[i] = i;
         sz[i] = 1;
     }
@@ -201,6 +201,9 @@ void merge(int x, int y) {
         sz[fx] += sz[fy];
     }
 }
+
+// 一定记得初始化并查集
+init();
 ```
 
 另外还有「边带权」和「拓展域」的并查集，在原有并查集的基础上维护一些具有传递关系的属性。
