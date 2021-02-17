@@ -1,11 +1,15 @@
 /*
 f[i][j]:前i个物品，背包容量j下的最大价值
 
-选与不选第i个物品
-选：f[i][j] = f[i-1][j-v[i]] + w[i]
-不选：f[i][j] = f[i-1][j]
-初始化：
-f[0][0] = 0
+第 i 个物品选 k 个，k = 0, 1, ...
+f[i-1][j-k*v[i]]+k*w[i]
+
+朴素的做法时间复杂度为 O(NM*M) = O(NM^2)
+观察：
+f[i][j]   = max(f[i-1][j], f[i-1][j-v]+w, f[i-1][j-2v]+2w, ...)
+f[i][j-v] =            max(f[i-1][j-v], f[i-1][j-2v]+w, f[i-1][j-3v]+2w, ...)
+发现：
+f[i][j] = max(f[i-1][j], f[i][j-v]+w)
 */
 #include <iostream>
 using namespace std;
