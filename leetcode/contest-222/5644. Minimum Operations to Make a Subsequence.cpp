@@ -2,6 +2,7 @@
 using namespace std;
 /*
 LCS，要求时间复杂度 O(n log n)，不能用 dp，要转化为 LIS 算法求解
+最长公共子序列转化为最长上升子序列
 */
 class Solution {
    public:
@@ -10,6 +11,8 @@ class Solution {
         unordered_map<int, int> pos;
         for (int i = 0; i < target.size(); i++)
             pos[target[i]] = i;
+        // a 维护 target 里面的数在 arr 里面出现的下标
+        // a 的最长上升子序列长度就是 target 和 arr 两者的最长公共子序列长度
         vector<int> a;
         for (auto x : arr) {
             if (pos.count(x)) a.push_back(pos[x]);

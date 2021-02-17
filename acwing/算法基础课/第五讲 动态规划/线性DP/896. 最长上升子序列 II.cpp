@@ -14,7 +14,7 @@ q: 2e-9  -5 -1  8
 q: 2e-9  -5 -4  8
 
 可参考：https://www.acwing.com/solution/content/6941/
-...
+See also: LeetCode 5644，用 LIS 求解 LCS
 */
 #include <iostream>
 using namespace std;
@@ -27,7 +27,7 @@ int main() {
     q[0] = -2e9;
     int len = 0;
     for (int i = 0; i < n; i++) {
-        // 找到最大的长度满足 q[?] < a[i]，也就是说 q[?] >= a[i]，最后可以用 a[i] 去更新 q[?]
+        // 找到最大的长度满足 q[?] < a[i]，也就是说 q[?+1] >= a[i]，最后可以用 a[i] 去更新 q[?+1]
         int l = 0, r = len;
         while (l < r) {
             int mid = (l + r + 1) >> 1;
