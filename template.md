@@ -372,7 +372,7 @@ long long ask(int p, int l, int r) {
 
 - AcWing 243
 
-## 质筛选
+## 质数筛选
 
 ```cpp
 // Eratosthenes 筛法
