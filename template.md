@@ -25,6 +25,8 @@
   - [二分图](#二分图)
     - [染色法判定二分图](#染色法判定二分图)
     - [求二分图的最大匹配](#求二分图的最大匹配)
+  - [KMP 算法](#kmp-算法)
+  - [字符串哈希](#字符串哈希)
   - [致谢](#致谢)
 
 ## 快速幂
@@ -796,6 +798,54 @@ for (int i = 1; i <= n1; i++) {
 }
 ```
 
+## KMP 算法
+
+```cpp
+// 求 A 在 B 中的各次出现位置
+void calcNext() {
+    // KMP 模板，Next[i] 表示「A 中以 i 结尾的非前缀子串」与「A 的前缀」能够匹配的最大长度
+    Next[1] = 0;
+    // j 的值在 while 循环中不断减小，j = Next[j] 的执行次数不会超过每层 for 循环开始时 j 的值与 while 循环结束时 j 的值之差
+    // 每层 for 循环，j 的值至多增加 1，j 始终非负，因此减小幅度总和不会超过增加幅度总和
+    // j 的变化次数至多为 2(N +M)，算法时间复杂度为 O(N + M)
+    for (int i = 2, j = 0; i <= n; i++) {
+        while (j > 0 && a[i] != a[j + 1]) j = Next[j];
+        if (a[i] == a[j + 1]) j++;
+        Next[i] = j;
+    }
+}
+for (int i = 1, j = 0; i <= m; i++) {
+    while (j > 0 && (j == n || b[i] != a[j + 1])) j = Next[j];
+    if (b[i] == a[j + 1]) j++;
+    // f[i] 表示「B 中以 i 结尾的非前缀子串」与「A 的前缀」能够匹配的最大长度
+    f[i] = j;
+    if (j == n) {
+        // A 在 B 中某次出现的起始下标
+        printf("%d ", i - n);
+    }
+}
+```
+
+## 字符串哈希
+
+```cpp
+typedef unsigned long long ULL;
+const int P = 131;
+p[0] = 1;
+int n = s.length();
+for (int i = 1, j = n; i <= n; i++, j--) {
+    f[i] = f[i - 1] * P + (s[i - 1] - 'a' + 1);
+    p[i] = P * p[i - 1];
+}
+ULL getHash(int l, int r) {
+    return f[r] - f[l - 1] * p[r - l + 1];
+}
+if (getHash(l1, r1) == getHash(l2, r2)) {
+    cout << "Yes" << endl;
+} else {
+    cout << "No" << endl;
+}
+```
 
 ## 致谢
 
