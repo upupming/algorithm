@@ -1,5 +1,31 @@
 # 算法模板
 
+- [算法模板](#算法模板)
+  - [快速幂](#快速幂)
+  - [lowbit 运算](#lowbit-运算)
+  - [归并排序](#归并排序)
+  - [离散化](#离散化)
+  - [Trie 树](#trie-树)
+  - [邻接表模板](#邻接表模板)
+  - [最大公约数](#最大公约数)
+  - [并查集](#并查集)
+  - [树状数组](#树状数组)
+  - [线段树](#线段树)
+    - [支持区间修改的线段树（延迟标记）](#支持区间修改的线段树延迟标记)
+  - [质数筛选](#质数筛选)
+  - [Treap](#treap)
+  - [最短路](#最短路)
+    - [Dijkstra](#dijkstra)
+    - [Bellman-Ford & SPFA](#bellman-ford--spfa)
+    - [Floyd](#floyd)
+  - [最小生成树](#最小生成树)
+    - [Prim](#prim)
+    - [Kruskal](#kruskal)
+  - [二分图](#二分图)
+    - [染色法判定二分图](#染色法判定二分图)
+    - [求二分图的最大匹配](#求二分图的最大匹配)
+  - [致谢](#致谢)
+
 ## 快速幂
 
 - AcWing 89
@@ -133,7 +159,7 @@ int search(string t) {
 
 ## 邻接表模板
 
-邻接表最简单的方法是直接用 `vector` 存储，但是用数组存储速度更快，也有一些优点（快速找到反向边），参考[我的分享](https://www.acwing.com/blog/content/4689/)。
+邻接表最简单的方法是直接用 `vector` 存储，但是用数组存储速度更快，也有一些优点（快速找到反向边）。这里采用的是蓝书的方法，y 总的方法于此略不同，参考[我的分享](https://www.acwing.com/blog/content/4689/)。
 
 - AcWing 257
 
@@ -386,6 +412,371 @@ void primes(int n) {
     }
 }
 ```
+
+## Treap
+
+```cpp
+// 数组模拟链表
+struct Treap {
+    // 左右子节点在数组中的下标
+    int l, r;
+    // 节点的关键码、权值
+    int val, dat;
+    // 副本数、子树大小
+    int cnt, size;
+} a[N];
+int tot, root, n, INF = 0x7fffffff;
+
+int New(int val) {
+    a[++tot].val = val;
+    // 随机初始化权值
+    a[tot].dat = rand();
+    a[tot].cnt = a[tot].size = 1;
+    return tot;
+}
+
+// 类似线段树自下往上的更新过程
+void Update(int p) {
+    a[p].size = a[a[p].l].size + a[a[p].r].size + a[p].cnt;
+}
+
+void Build() {
+    // 为避免越界，减少边界情况特殊判断，加入哨兵
+    New(-INF), New(INF);
+    root = 1, a[1].r = 2;
+    Update(root);
+}
+
+// 把 p 的左子节点绕着 p 向右旋转，注意 p 是引用
+void zig(int &p) {
+    int q = a[p].l;
+    a[p].l = a[q].r, a[q].r = p, p = q;
+    Update(a[p].r), Update(p);
+}
+// 把 p 的右子节点绕着 p 向左旋转，注意 p 是引用
+void zag(int &p) {
+    int q = a[p].r;
+    a[p].r = a[q].l, a[q].l = p, p = q;
+    Update(a[p].l), Update(p);
+}
+
+// 注意 p 是引用
+void Insert(int &p, int val) {
+    if (p == 0) {
+        p = New(val);
+        return;
+    }
+    // 如果之前已经有相同关键码的节点，只需要 cnt++ 即可
+    if (val == a[p].val) {
+        a[p].cnt++, Update(p);
+        return;
+    }
+    // 在左子树中插入
+    if (val < a[p].val) {
+        Insert(a[p].l, val);
+        // 不满足堆性质，右旋
+        if (a[p].dat < a[a[p].l].dat) zig(p);
+    }
+    // 在右子树中插入
+    else {
+        Insert(a[p].r, val);
+        // 不满足堆性质，左旋
+        if (a[p].dat < a[a[p].r].dat) zag(p);
+    }
+    Update(p);
+}
+
+int GetPre(int val) {
+    // a[1].val = -INF
+    int ans = 1;
+    int p = root;
+    // 一直循环直到找到一个关键码为 val 的节点，找到之后会直接 break
+    // 找不到也没关系，已经经过的节点中一定包含答案，ans 即为所求
+    while (p) {
+        if (val == a[p].val) {
+            if (a[p].l > 0) {
+                p = a[p].l;
+                // 左子树一直往右走
+                while (a[p].r > 0) p = a[p].r;
+                ans = p;
+            }
+            // 检索成功之后会 break 掉
+            break;
+        }
+        // 节点 p 是小于 val 的，并且相比 ans 离 val 更近，更新 ans
+        if (a[p].val < val && a[p].val > a[ans].val) ans = p;
+        // 根据 val 情况往左或者往右走
+        p = val < a[p].val ? a[p].l : a[p].r;
+    }
+    return a[ans].val;
+}
+
+int GetNext(int val) {
+    // a[2].val == INF
+    int ans = 2;
+    int p = root;
+    while (p) {
+        if (val == a[p].val) {
+            if (a[p].r > 0) {
+                p = a[p].r;
+                // 右子树一直往左走
+                while (a[p].l > 0) p = a[p].l;
+                ans = p;
+            }
+            break;
+        }
+        if (a[p].val > val && a[p].val < a[ans].val) ans = p;
+        p = val < a[p].val ? a[p].l : a[p].r;
+    }
+    return a[ans].val;
+}
+```
+
+- AcWing 253
+
+## 最短路
+
+### Dijkstra
+
+```cpp
+// 朴素：O(N^2)，适用于 M 比较大，N 很小的情况
+void dijkstra() {
+    memset(d, 0x3f, sizeof d);
+    d[1] = 0;
+    // 重复 n - 1 次
+    for (int i = 1; i < n; i++) {
+        int x = 0;
+        // 找到未标记节点中 dist 最小的
+        for (int j = 1; j <= n; j++) {
+            if (!v[j] && (x == 0 || d[j] < d[x]))
+                x = j;
+        }
+        v[x] = 1;
+        // 用全局最小值点 x 更新其他节点
+        for (int y = 1; y <= n; y++)
+            d[y] = min(d[y], d[x] + a[x][y]);
+    }
+}
+// 堆优化：O(M log N)，适用于 N 比较大的情况
+void dijkstra() {
+    memset(d, 0x3f, sizeof d);
+    d[1] = 0;
+    pq.push({0, 1});
+    while (pq.size()) {
+        // 取出堆顶
+        int x = pq.top().second;
+        pq.pop();
+        if (v[x]) continue;
+        v[x] = 1;
+        // 扫描所有出边
+        for (int i = head[x]; i; i = Next[i]) {
+            int y = ver[i], z = edge[i];
+            if (d[y] > d[x] + z) {
+                d[y] = d[x] + z;
+                pq.push({d[y], y});
+            }
+        }
+    }
+}
+```
+
+### Bellman-Ford & SPFA
+
+```cpp
+// Bellman-Ford 算法，时间复杂度 O(NM)
+// 在求解有边数限制的最短路问题时，一般选择 Bellman-Ford 算法更好，最外层循环次数就是边数限制
+// 在 Bellman-Ford 算法中，最后 d[n] 虽然是无穷大，但是中间可能被一些负权值更新过，略小于 0x3f3f3f3f，其实也可以在 relax 的是时候做一个特判，无穷大的边不 relax 就行
+// 最后无穷大的判断用 > 0x3f3f3f3f / 2
+struct P {
+    int x, y, z;
+} e[M];
+memset(d, 0x3f, sizeof d);
+d[1] = 0;
+for (int i = 1; i <= k; i++) {
+    memcpy(last, d, sizeof d);
+
+    for (int j = 1; j <= m; j++) {
+        // 从上次的 last 距离转移，而不是这次的进行转移，否则边数多于 i 了
+        d[e[j].y] = min(d[e[j].y], last[e[j].x] + e[j].z);
+    }
+}
+// SPFA 求最短路
+void spfa() {
+    memset(d, 0x3f, sizeof d);
+    d[1] = 0, v[1] = 1;
+    q.push(1);
+    while (q.size()) {
+        // 取出队头
+        int x = q.front();
+        q.pop();
+        v[x] = 0;
+        // 扫描所有出边
+        for (int i = head[x]; i; i = Next[i]) {
+            int y = ver[i], z = edge[i];
+            if (d[y] > d[x] + z) {
+                // 更新，把新的二元组插入堆
+                d[y] = d[x] + z;
+                if (!v[y]) q.push(y), v[y] = 1;
+            }
+        }
+    }
+}
+// SPFA 判断负环
+bool spfa() {
+    // d 数组无需初始化，因为我们最终需要求的不是真正的距离
+
+    // 因为要求所有可能的负环，所以所有点都当做起点加进去
+    for (int i = 1; i <= n; i++) {
+        v[i] = 1;
+        q.push(i);
+    }
+
+    while (q.size()) {
+        // 取出队头
+        int x = q.front();
+        q.pop();
+        v[x] = 0;
+        // 扫描所有出边
+        for (int i = head[x]; i; i = Next[i]) {
+            int y = ver[i], z = edge[i];
+            if (d[y] > d[x] + z) {
+                // 更新，把新的二元组插入堆
+                d[y] = d[x] + z;
+                cnt[y] = cnt[x] + 1;
+                if (cnt[y] >= n) return true;
+                if (!v[y]) q.push(y), v[y] = 1;
+            }
+        }
+    }
+}
+```
+
+### Floyd
+
+```cpp
+// 跟 Bellman-Ford 算法一样，最后 d[n] 虽然是无穷大，但是中间可能被一些负权值更新过，略小于 0x3f3f3f3f，其实也可以在 relax 的是时候做一个特判，无穷大的边不 relax 就行
+// 最后无穷大的判断用 > 0x3f3f3f3f / 2
+memset(d, 0x3f, sizeof d);
+for (int i = 1; i <= n; i++) d[i][i] = 0;
+for (int i = 1; i <= m; i++) {
+    cin >> x >> y >> z;
+    d[x][y] = min(d[x][y], z);
+}
+// floyd 求任意两点间最短路径
+for (int k = 1; k <= n; k++) {
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n; j++) {
+            d[i][j] = min(d[i][j], d[i][k] + d[k][j]);
+        }
+    }
+}
+```
+
+## 最小生成树
+
+### Prim
+
+```cpp
+// Prim 采用加点的思想，时间复杂度为 O(N^2)，堆优化版为 O(M log N)，适用于稠密图，一般直接用朴素版即可
+void prim() {
+    memset(d, 0x3f, sizeof d);
+    d[1] = 0;
+    for (int i = 1; i < n; i++) {
+        int x = 0;
+        for (int j = 1; j <= n; j++) {
+            if (!v[j] && (x == 0 || d[j] < d[x]))
+                x = j;
+        }
+        v[x] = 1;
+        for (int y = 1; y <= n; y++) {
+            // 注意这里是和 Dijkstra 的区别所在，求的是到集合的距离，不需要加 d[x] 了
+            // 这里可以求出生成树中 y 的前驱结点是谁
+            if (!v[y]) d[y] = min(d[y], a[x][y]);
+        }
+    }
+}
+```
+
+### Kruskal
+
+```cpp
+// Kruskal 是加边的算法，用到了并查集维护生成森林的所有点，时间复杂度为 O(M log M)
+struct P {
+    int x, y, z;
+    bool operator<(const P& b) {
+        return z < b.z;
+    }
+} edge[M];
+sort(edge + 1, edge + m + 1);
+// 并查集初始化
+for (int i = 1; i <= n; i++) fa[i] = i;
+// 求最小生成树
+for (int i = 1; i <= m; i++) {
+    int x = get(edge[i].x);
+    int y = get(edge[i].y);
+    if (x == y) continue;
+    fa[x] = y;
+    ans += edge[i].z;
+}
+// 可以逐一判断是否属于一个集合
+// y 总则是看看上面的循环是不是 merge 了 n-1 次
+for (int i = 2; i <= n; i++) {
+    if (get(i) != get(1)) {
+        puts("impossible");
+        return 0;
+    }
+}
+```
+
+## 二分图
+
+### 染色法判定二分图
+
+```cpp
+bool dfs(int x, int color) {
+    v[x] = color;
+    for (int i = head[x]; i; i = Next[i]) {
+        int y = ver[i];
+        if (!v[y]) {
+            if (!dfs(y, 3 - color)) return false;
+        } else {
+            if (v[y] == color) return false;
+        }
+    }
+    return true;
+}
+bool isBipartite() {
+    for (int i = 1; i <= n; i++) {
+        if (!v[i]) {
+            if (!dfs(i, 1)) return false;
+        }
+    }
+    return true;
+}
+```
+
+### 求二分图的最大匹配
+
+```cpp
+bool dfs(int x) {
+    for (int i = head[x], y; i; i = Next[i]) {
+        if (!v[y = ver[i]]) {
+            v[y] = 1;
+            // 如果 y 正好没有男朋友；或者 y 有男朋友，但是 y 的男朋友 match[y] 可以换一个妹子的话；那么就把 y 的男朋友设置为 x
+            if (!match[y] || dfs(match[y])) {
+                match[y] = x;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+for (int i = 1; i <= n1; i++) {
+    memset(v, 0, sizeof v);
+    if (dfs(i)) ans++;
+}
+```
+
 
 ## 致谢
 

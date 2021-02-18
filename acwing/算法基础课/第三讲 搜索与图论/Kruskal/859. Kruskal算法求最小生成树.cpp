@@ -34,7 +34,7 @@ int main() {
         fa[x] = y;
         ans += edge[i].z;
     }
-    // 可以逐一判断是否则一个集合
+    // 可以逐一判断是否属于一个集合
     // y 总则是看看上面的循环是不是 merge 了 n-1 次
     for (int i = 2; i <= n; i++) {
         if (get(i) != get(1)) {
