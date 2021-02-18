@@ -330,11 +330,11 @@ int ask(int p, int l, int r) {
 // 注意：有延迟标记的节点，本身已经完成了数据更新，只是没有传递给子节点
 struct SegmentTree {
     int l, r;
-    long long dat, flag;
+    long long dat, lazy;
 #define l(x) tree[x].l
 #define r(x) tree[x].r
 #define dat(x) tree[x].dat
-#define flag(x) tree[x].flag
+#define lazy(x) tree[x].lazy
 } tree[N * 4];
 int a[N];
 
@@ -351,17 +351,17 @@ void build(int p, int l, int r) {
 }
 void spread(int p) {
     // 节点 p 有延迟标记的话
-    if (flag(p)) {
+    if (lazy(p)) {
         // 更新左子节点信息，延迟值 * 区间长度等于节点的增加量
-        dat(2 * p) += flag(p) * (r(2 * p) - l(2 * p) + 1);
+        dat(2 * p) += lazy(p) * (r(2 * p) - l(2 * p) + 1);
         // 更新右子节点信息
-        dat(2 * p + 1) += flag(p) * (r(2 * p + 1) - l(2 * p + 1) + 1);
+        dat(2 * p + 1) += lazy(p) * (r(2 * p + 1) - l(2 * p + 1) + 1);
         // 给左子节点打延迟标记
-        flag(2 * p) += flag(p);
+        lazy(2 * p) += lazy(p);
         // 给右子节点打延迟标记
-        flag(2 * p + 1) += flag(p);
+        lazy(2 * p + 1) += lazy(p);
         // 清除 p 的标记
-        flag(p) = 0;
+        lazy(p) = 0;
     }
 }
 
@@ -371,7 +371,7 @@ void change(int p, int l, int r, int d) {
         // 更新节点信息，每个节点增加量 d * 区间长度 = 节点增加量
         dat(p) += (long long)d * (r(p) - l(p) + 1);
         // 给节点打延迟标记
-        flag(p) += d;
+        lazy(p) += d;
         return;
     }
     // 因为即将访问下面的节点了，必须先下传延迟标记
