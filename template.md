@@ -27,6 +27,7 @@
     - [求二分图的最大匹配](#求二分图的最大匹配)
   - [KMP 算法](#kmp-算法)
   - [字符串哈希](#字符串哈希)
+  - [Manacher 求最长回文子串](#manacher-求最长回文子串)
   - [致谢](#致谢)
 
 ## 快速幂
@@ -845,6 +846,40 @@ if (getHash(l1, r1) == getHash(l2, r2)) {
 } else {
     cout << "No" << endl;
 }
+```
+
+## Manacher 求最长回文子串
+
+注意，「子串」和「子序列」是不同的，「子串」是原字符串中连续的一段，「子序列」原字符串中选一些字符保持原来的顺序构成的新的串。
+
+```cpp
+int manacher() {
+    n = strlen(s);
+    str[0] = '!', str[1] = '#'; /* str[0]为哨兵 */
+    for (int i = 0; i < n; i++) {
+        str[i * 2 + 2] = s[i];
+        str[i * 2 + 3] = '#';
+    }
+    m = n * 2 + 1;
+    str[m + 1] = '@'; /* 哨兵 */
+
+    int rt = 0, mid = 0;
+    int res = 0;
+    for (int i = 1; i <= m; i++) {
+        p[i] = i < rt ? min(p[2 * mid - i], rt - i) : 1;
+        while (str[i + p[i]] == str[i - p[i]]) p[i]++;
+        if (i + p[i] > rt) {
+            rt = i + p[i];
+            mid = i;
+        }
+        res = max(res, p[i] - 1);
+    }
+    return res;
+}
+作者：番茄酱
+链接：https://www.acwing.com/blog/content/2192/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
 
 ## 致谢
