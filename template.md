@@ -9,6 +9,7 @@
   - [Trie 树](#trie-树)
   - [邻接表模板](#邻接表模板)
   - [最大公约数](#最大公约数)
+    - [扩展欧几里得算法](#扩展欧几里得算法)
   - [并查集](#并查集)
   - [树状数组](#树状数组)
   - [线段树](#线段树)
@@ -218,6 +219,24 @@ int gcd(int a, int b) {
 ```
 
 另外，最小公倍数 lcm(a, b) = a * b / gcd(a, b)。
+
+### 扩展欧几里得算法
+
+求 ax + by = gcd(b, b) 的一对整数解 (x, y)。一般形式 ax + by = c 有解，当且仅当 d | c（d 是 a 和 b 的最大公约数）。
+
+```cpp
+int extgcd(int a, int b, int &x, int &y) {
+    if (b == 0) {
+        x = 1, y = 0;
+        return a;
+    }
+    int d = extgcd(b, a % b, x, y);
+    int z = x;
+    x = y;
+    y = z - a / b * y;
+    return d;
+}
+```
 
 ## 并查集
 
@@ -581,6 +600,8 @@ void dijkstra() {
 }
 // 堆优化：O(M log N)，适用于 N 比较大的情况
 void dijkstra() {
+typedef pair<int, int> PII;
+    priority_queue<PII, vector<PII>, greater<PII>> pq;
     memset(d, 0x3f, sizeof d);
     d[1] = 0;
     pq.push({0, 1});
@@ -624,6 +645,7 @@ for (int i = 1; i <= k; i++) {
 }
 // SPFA 求最短路
 void spfa() {
+    queue<int> q;
     memset(d, 0x3f, sizeof d);
     d[1] = 0, v[1] = 1;
     q.push(1);
