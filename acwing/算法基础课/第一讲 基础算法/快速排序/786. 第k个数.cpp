@@ -4,6 +4,8 @@
 2. >= 基准值
 cnt >= k，在左半边找第 k 小数
 cnt < k，在右半边找找第 k - cnt 小数
+
+蓝书 P37, P247
 */
 #include <iostream>
 using namespace std;

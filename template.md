@@ -1,6 +1,7 @@
 # 算法模板
 
 - [算法模板](#算法模板)
+  - [二分](#二分)
   - [高精度](#高精度)
     - [高精度加法](#高精度加法)
     - [高精度减法](#高精度减法)
@@ -35,6 +36,63 @@
   - [字符串哈希](#字符串哈希)
   - [Manacher 求最长回文子串](#manacher-求最长回文子串)
   - [致谢](#致谢)
+
+## 二分
+
+始终要记住的一点是，如果新边界出现了 `mid - 1`，就需要在开始将 `mid` 赋值为 `(l + r + 1) >> 1`，多一个 `+ 1`。
+
+```cpp
+bool check(int x) {/* ... */} // 检查x是否满足某种性质
+
+// 区间[l, r]被划分成[l, mid]和[mid + 1, r]时使用：
+int bsearch_1(int l, int r)
+{
+    while (l < r)
+    {
+        int mid = l + r >> 1;
+        if (check(mid)) r = mid;    // check()判断mid是否满足性质
+        else l = mid + 1;
+    }
+    return l;
+}
+// 区间[l, r]被划分成[l, mid - 1]和[mid, r]时使用：
+int bsearch_2(int l, int r)
+{
+    while (l < r)
+    {
+        int mid = l + r + 1 >> 1;
+        if (check(mid)) l = mid;
+        else r = mid - 1;
+    }
+    return l;
+}
+
+作者：yxc
+链接：https://www.acwing.com/blog/content/277/
+来源：AcWing
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+```
+
+具体例子：
+
+```cpp
+// 查找单调递增序列中 >= x 的最小一个数
+while (l < r) {
+    int mid = (l + r) >> 1;
+    if (a[mid] >= x)
+        r = mid;
+    else
+        l = mid + 1;
+}
+// 查找单调递增序列中 <= x 的最大一个数
+while (l < r) {
+    int mid = (l + r + 1) >> 1;
+    if (a[mid] <= x)
+        l = mid;
+    else
+        r = mid - 1;
+}
+```
 
 ## 高精度
 
