@@ -10,6 +10,7 @@ k 元组描绘的轮廓内的合影方案总数就足以构成一个子问题
 #include <cstring>
 #include <iostream>
 using namespace std;
+// 这种维度很多的题目，N 尽量不要开得太大，容易 TLE
 const int K = 10, N = 35;
 
 int k, n[K];
