@@ -5,8 +5,9 @@
 #include <ctime>
 #include <iostream>
 const int N = 1e4;
-const std::string bf = "./kick-start/2020/RoundC/D.\\ Candies-BF.cpp";
-const std::string algo = "./kick-start/2020/RoundC/D.\\ Candies.cpp";
+const std::string bf = "kick-start/2021/RoundB/B.\\ naive.cpp";
+const std::string algo = "kick-start/2021/RoundB/B.\\ Longest\\ Progression.cpp";
+const std::string randomGenerator = "kick-start/2021/RoundB/B.\\ random.cpp";
 
 /*
 封装一下 `system`，支持 ctrl + c 退出整个对拍程序
@@ -26,7 +27,7 @@ int mySystem(const char* command) {
 }
 
 int main() {
-    mySystem("g++ ./random.cpp -o random.out");
+    mySystem(("g++ -std=c++11 -o random.out " + randomGenerator).c_str());
     mySystem(
         ("g++ -std=c++11 -o bf.out " + bf).c_str());
     mySystem(
