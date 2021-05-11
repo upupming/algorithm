@@ -4,10 +4,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-const int N = 1e4;
-const std::string bf = "kick-start/2021/RoundB/B.\\ naive.cpp";
-const std::string algo = "kick-start/2021/RoundB/B.\\ Longest\\ Progression.cpp";
-const std::string randomGenerator = "kick-start/2021/RoundB/B.\\ random.cpp";
+
+const std::string bf = "kick-start/2021/RoundB/D.\\ naive.cpp";
+const std::string algo = "kick-start/2021/RoundB/D.\\ Truck\\ Delivery.cpp";
+const std::string randomGenerator = "kick-start/2021/RoundB/D.\\ random.cpp";
 
 /*
 封装一下 `system`，支持 ctrl + c 退出整个对拍程序
@@ -27,12 +27,12 @@ int mySystem(const char* command) {
 }
 
 int main() {
-    mySystem(("g++ -std=c++11 -o random.out " + randomGenerator).c_str());
+    mySystem(("g++ -std=c++17 -o random.out " + randomGenerator).c_str());
     mySystem(
-        ("g++ -std=c++11 -o bf.out " + bf).c_str());
+        ("g++ -std=c++17 -o bf.out " + bf).c_str());
     mySystem(
-        ("g++ -std=c++11 -o algo.out " + algo).c_str());
-    for (int T = 1; T <= N; T++) {
+        ("g++ -std=c++17 -o algo.out " + algo).c_str());
+    for (int T = 1;; T++) {
         // 生成随机数据
         mySystem("./random.out > data.in");
         // 记录运行的 CPU 时间

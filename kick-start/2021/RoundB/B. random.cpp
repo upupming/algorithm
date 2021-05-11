@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-int random(int n) {
+long long random(long long n) {
     return (long long)rand() * rand() % n;
 }
 
@@ -12,7 +12,6 @@ int main() {
 
     int n = 6;
     cout << 1 << endl;
-    cout << n << endl;
     for (int i = 1; i <= n; i++) cout << random(100) + 1 << " ";
     cout << endl;
     return 0;
