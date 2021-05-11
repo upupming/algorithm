@@ -467,15 +467,15 @@ RMQ 常用算法，树状数组基于区间划分，线段树则是基于分治�
 struct SegmentTree {
     int l, r;
     int dat;
-} t[N * 4];
+} tree[N * 4];
 
 // 线段树的建树，时间复杂度：O(N)
 // p 表示节点编号，[l, r] 表示节点所代表的区间
 void build(int p, int l, int r) {
-    t[p].l = l, t[p].r = r;
+    tree[p].l = l, tree[p].r = r;
     // 叶节点，表示单个元素
     if (l == r) {
-        t[p].dat = a[l];
+        tree[p].dat = a[l];
         return;
     }
     int mid = (l + r) >> 1;
@@ -484,7 +484,7 @@ void build(int p, int l, int r) {
     // 右子节点：编号为 2*p+1，代表区间 [mid+1, r]
     build(2 * p + 1, mid + 1, r);
     // 从下往上合并更新信息
-    t[p].dat = max(t[2 * p].dat, t[2 * p + 1].dat);
+    tree[p].dat = max(tree[2 * p].dat, tree[2 * p + 1].dat);
 }
 
 // 调用入口
@@ -494,18 +494,18 @@ build(1, 1, n);
 // 将 a[x] 的值修改为 v
 void change(int p, int x, int v) {
     // 找到叶节点
-    if (t[p].l == t[p].r) {
-        t[p].dat = v;
+    if (tree[p].l == tree[p].r) {
+        tree[p].dat = v;
         return;
     }
-    int mid = (t[p].l + t[p].r) >> 1;
+    int mid = (tree[p].l + tree[p].r) >> 1;
     // x 属于左半区间
     if (x <= mid) change(2 * p, x, v);
     // x 属于右半区间
     else
         change(2 * p + 1, x, v);
     // 从下往上合并更新信息
-    t[p].dat = max(t[2 * p].dat, t[2 * p + 1].dat);
+    tree[p].dat = max(tree[2 * p].dat, tree[2 * p + 1].dat);
 }
 
 // 调用入口
@@ -515,13 +515,13 @@ change(1, x, v);
 // 查询序列 a 在区间 [l, r] 上的最大值
 int ask(int p, int l, int r) {
     // 查询区间 [l, r] 完全包含节点 p 所代表的的区间
-    if (l <= t[p].l && r >= t[p].r) return t[p].dat;
-    int mid = (t[p].l + t[p].r) >> 1;
+    if (l <= tree[p].l && r >= tree[p].r) return tree[p].dat;
+    int mid = (tree[p].l + tree[p].r) >> 1;
     // 负无穷大
     int val = -(1 << 30);
-    // 左子节点 [t[p].l, mid] 与查询 [l, r] 有重合
+    // 左子节点 [tree[p].l, mid] 与查询 [l, r] 有重合
     if (l <= mid) val = max(val, ask(2 * p, l, r));
-    // 右子节点 [mid+1, t[p].r] 与查询 [l, r] 有重合
+    // 右子节点 [mid+1, tree[p].r] 与查询 [l, r] 有重合
     if (r >= mid + 1) val = max(val, ask(2 * p + 1, l, r));
     return val;
 }
