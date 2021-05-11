@@ -28,7 +28,12 @@
 ## 推荐一些优质的资源
 
 - [《算法竞赛进阶指南》打卡活动](https://www.acwing.com/activity/content/introduction/6/)
+- [《算法竞赛进阶指南》资源社区](https://github.com/lydrainbowcat/tedukuri)
 - [yxc的B站](https://space.bilibili.com/7836741/)
+- [残酷刷题群排行榜](https://wisdompeak.github.io/lc-score-board/)、[残酷刷题群题目清单](https://docs.google.com/spreadsheets/d/1kBGyRsSdbGDu7DzjQcC-UkZjZERdrP8-_QyVGXHSrB8/edit)、[wisdompeak的B站](https://space.bilibili.com/695330558/)
+    - [群友YoungForest的博客](https://youngforest.github.io/)
+    - [群友Bill0412的博客](https://kickstart.best/)
+- [lucifer1004的CP笔记](https://cp-wiki.vercel.app/)
 - [Errichto 的 YouTube](https://www.youtube.com/channel/UCBr_Fu6q9iHYQCh13jmpbrg)
 - [William Lin 的 YouTube](https://www.youtube.com/channel/UCKuDLsO0Wwef53qdHPjbU2Q)
 - [lee215 的 YouTube](https://www.youtube.com/channel/UCUBt1TDQTl1atYsscVoUzoQ)、[lee215 的公众号](https://mp.weixin.qq.com/s/5tcPvmaga1ia31lYqYbNYA)
