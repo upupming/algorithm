@@ -1,29 +1,5 @@
 # Google KickStart 2021 Round B
 
-- [Google KickStart 2021 Round B](#google-kickstart-2021-round-b)
-    - [A. Increasing Substring](#a-increasing-substring)
-        - [算法 —— 线性扫描](#算法--线性扫描)
-        - [时间复杂度](#时间复杂度)
-        - [C++ 代码](#c-代码)
-    - [B. Longest Progression](#b-longest-progression)
-        - [算法 —— 差分+贪心](#算法--差分贪心)
-        - [时间复杂度](#时间复杂度-1)
-        - [C++ 代码](#c-代码-1)
-    - [C. Consecutive Primes](#c-consecutive-primes)
-        - [算法 —— 素数判断](#算法--素数判断)
-        - [时间复杂度](#时间复杂度-2)
-        - [C++ 代码](#c-代码-2)
-    - [D. Truck Delivery](#d-truck-delivery)
-        - [暴力解法](#暴力解法)
-            - [算法 —— DFS + 暴力](#算法--dfs--暴力)
-            - [时间复杂度](#时间复杂度-3)
-            - [C++ 代码](#c-代码-3)
-        - [优化解法](#优化解法)
-            - [算法 —— DFS + 线段树](#算法--dfs--线段树)
-            - [时间复杂度](#时间复杂度-4)
-            - [C++ 代码](#c-代码-4)
-    - [总结](#总结)
-
 比 A 轮还是难一点，只拿了 37 分，思维和代码熟练度都欠缺，再接再厉。
 
 - Score: 37
@@ -35,18 +11,14 @@
 
 - 从前到后扫描整个字符串，`dp[i]` 表示以 `i` 为结尾的最长单调子串的长度
 - 转移方程为：
+    - `dp[i] = dp[i]+1, s[i] > s[i-1]`
+    - `dp[i] = 1, s[i] <= s[i-1]`
 
-    $$
-    \begin{cases}
-        dp(i) = dp(i) + 1, & s[i] > s[i-1] \\
-        dp(i) = 1, & s[i] \le s[i-1] \\
-    \end{cases}
-    $$
 - 由于状态计算只需要使用上一个下标 `dp[i-1]` 的值，所以将数组可以优化成一个变量，滚动更新。
 
 ### 时间复杂度
 
-- 扫描一遍字符串: $O(n)$
+- 扫描一遍字符串: `O(n)`
 
 ### C++ 代码
 
@@ -84,7 +56,7 @@ int main() {
 
 ## B. Longest Progression
 
-比较复杂的一个分类讨论，当时没有梳理清楚逻辑关系，直接在 2020 RoundE Problem A 的基础上写的暴力（暴力枚举差分改变的地方，然后运行原来的朴素算法），$O(N^2)$ 的所以会在 Test 2 上 TLE。
+比较复杂的一个分类讨论，当时没有梳理清楚逻辑关系，直接在 2020 RoundE Problem A 的基础上写的暴力（暴力枚举差分改变的地方，然后运行原来的朴素算法），`O(N^2)` 的所以会在 Test 2 上 TLE。
 
 ### 算法 —— 差分+贪心
 
@@ -180,7 +152,7 @@ int main() {
 
 ## C. Consecutive Primes
 
-比赛的时候想到了先用线性筛计算 `[1, sqrt(Z)]` 范围内的素数，然后二分小因子的算法，总时间复杂度为 $O(\sqrt{Z} + \log cnt)$，其中 `cnt` 表示`[1, sqrt(Z)]` 范围内的素数总个数。显然无法过 Test 3。主要瓶颈在线性筛算法上。
+比赛的时候想到了先用线性筛计算 `[1, sqrt(Z)]` 范围内的素数，然后二分小因子的算法，总时间复杂度为 `O(sqrt{Z} + log cnt)`，其中 `cnt` 表示`[1, sqrt(Z)]` 范围内的素数总个数。显然无法过 Test 3。主要瓶颈在线性筛算法上。
 
 > 注：根据 [lucifer1004](https://cp-wiki.vercel.app/tutorial/kick-start/2021B/#problem-c-consecutive-primes) 的解释，用线性筛也是可以过的，但是要将线性筛外提，所有的测试用例只运行一次线性筛。不过这是因为 KickStart 评测机的时间限制比较宽裕，我们赛后还是要追求最好的解法。
 
@@ -195,9 +167,9 @@ int main() {
 
 ### 时间复杂度
 
-- 枚举三个数: $O(282 \times 3)$
-    - 判断是否是质数: $\sqrt[4]{Z}$
-- 总时间复杂度: $O(282 \times 3 \times \sqrt[4]{Z})$
+- 枚举三个数: `O(282 * 3)`
+    - 判断是否是质数: `fourth_root(z)` （`z` 的四次方根）
+- 总时间复杂度: `O(282 * 3 * fourth_root(z))`
 
 ### C++ 代码
 
@@ -274,12 +246,12 @@ int main() {
 
 #### 时间复杂度
 
-- DFS: $O(N)$
-- 遍历所有询问: $O(Q)$
-    - 每个询问需要访问路径上所有的边，最坏情况下最长边为 $N-1$: $O(N)$
+- DFS: `O(N)`
+- 遍历所有询问: `O(Q)`
+    - 每个询问需要访问路径上所有的边，最坏情况下最长边为 `N-1`: `O(N)`
         - 最多每条边计算一次 gcd
-    - 计算 N 个数的 gcd 的总时间复杂度为 $O(N + \log(\max{A}))$，注意不是 $O(N \times \log(\max{A}))$，证明先略去
-- 总时间复杂度: $O(Q(N + \log(\max{A})))$
+    - 计算 N 个数的 gcd 的总时间复杂度为 `O(N + log(max{A}))`，注意不是 `O(N * log(max{A}))`，证明先略去
+- 总时间复杂度: `O(Q(N + log(max{A})))`
 
 #### C++ 代码
 
@@ -362,11 +334,11 @@ int main() {
 
 #### 时间复杂度
 
-- DFS: $O(N + Q)$
+- DFS: `O(N + Q)`
     - 同时维护线段树:
-        - 维护的时间复杂度为 $\log(\max{L})$
-        - 最多只需要计算 $\log(\max{L})$ 个数的 gcd: $O(\log(\max{L}) + \log(\max{A}))$
-- 总时间复杂度: $O\left[(N + Q)(\log(\max{L}) + \log(\max{A}))\right]$
+        - 维护的时间复杂度为 `log(max{L})`
+        - 最多只需要计算 `log(max{L})` 个数的 gcd: `O(log(max{L}) + log(max{A}))`
+- 总时间复杂度: `O[(N + Q)(log(max{L}) + log(max{A}))]`
 
 #### C++ 代码
 
@@ -505,3 +477,7 @@ int main() {
 1. 思路比较乱的时候，先不要实现，不然徒劳无功。真不行了，可以先实现朴素算法，再做改进。
 2. 没有明确思路的时候，先把所有的题目看完，可能出现后面的题目更简单的情况。（这次都没有留下时间仔细想最后一题）
 3. 数据范围还是需要仔细看。
+
+## 开源代码
+
+代码已经放在 GitHub: https://github.com/upupming/algorithm/tree/master/kick-start/2021/RoundB ，大家多多 clone，也可以随手 star 一下~
