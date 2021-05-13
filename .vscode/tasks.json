@@ -1,0 +1,19 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: g++-10 build active file",
+            "command": "/usr/local/bin/g++-10",
+            "args": ["-g", "${file}", "-o", "${workspaceFolder}/a.out"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": ["$gcc"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "version": "2.0.0"
+}
