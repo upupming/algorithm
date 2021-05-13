@@ -7,3 +7,4 @@ test.cpp
 Info.plist
 *.in
 data.ans
+out

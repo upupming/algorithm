@@ -74,6 +74,11 @@
   resolved "https://registry.nlark.com/@types/lodash/download/@types/lodash-4.14.169.tgz#83c217688f07a4d9ef8f28a3ebd1d318f6ff4cbb"
   integrity sha1-g8IXaI8HpNnvjyij69HTGPb/TLs=
 
+"@types/node@15.0.3":
+  version "15.0.3"
+  resolved "https://registry.nlark.com/@types/node/download/@types/node-15.0.3.tgz?cache=0&sync_timestamp=1620848326998&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-15.0.3.tgz#ee09fcaac513576474c327da5818d421b98db88a"
+  integrity sha1-7gn8qsUTV2R0wyfaWBjUIbmNuIo=
+
 "@typescript-eslint/eslint-plugin@4.1.0":
   version "4.1.0"
   resolved "https://registry.nlark.com/@typescript-eslint/eslint-plugin/download/@typescript-eslint/eslint-plugin-4.1.0.tgz#7d309f60815ff35e9627ad85e41928d7b7fd443f"
@@ -1302,6 +1307,11 @@ run-parallel@^1.1.9:
   integrity sha1-ZtE2jae9+SHrnZW9GpIp5/IaQ+4=
   dependencies:
     queue-microtask "^1.2.2"
+
+scanf@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.nlark.com/scanf/download/scanf-1.1.2.tgz#1a11912f50f6773e0c9e1e26145b9895fdd69c07"
+  integrity sha1-GhGRL1D2dz4Mnh4mFFuYlf3WnAc=
 
 "semver@2 || 3 || 4 || 5":
   version "5.7.1"

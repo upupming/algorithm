@@ -119,6 +119,7 @@
     "SPFA",
     "Treap",
     "lowbit",
+    "readline",
     "struct"
   ],
   // 好多地方只支持 4 的 indent，例如知乎和 AcWing

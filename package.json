@@ -8,6 +8,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "4.14.169",
+    "@types/node": "15.0.3",
     "@typescript-eslint/eslint-plugin": "4.1.0",
     "eslint": "7.24.0",
     "eslint-config-standard-with-typescript": "20.0.0",
@@ -16,5 +17,8 @@
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-standard": "5.0.0",
     "typescript": "4.2.4"
+  },
+  "dependencies": {
+    "scanf": "1.1.2"
   }
 }
