@@ -65,7 +65,7 @@ function main () {
 参考 [node-scanf](https://github.com/Lellansin/node-scanf/blob/1fd4eb96bbe26c5c22edc3b72b5aa2fdbc591866/lib/gets.js#L11) 和 [node.js: readSync from stdin?](https://stackoverflow.com/questions/3430939/node-js-readsync-from-stdin/9318276)。
 
 - 优点: 输入是主动的（不是回调函数）
-- 缺点: 还是得全部输入之后再做处理，使用上和 process.stdin.on 是等价的
+- 缺点: 还是得全部输入之后再做处理（因为不能要求 `readFileSync` 只读一行，`readFileSync` 有自己的缓冲机制，你最多只能传一个 `buf` 给他，但是每次 `readFileSync` 得到的不一定是一行输入，在文件输入的情况下常常可能是多行，手动输入才可能是一行），使用上和 process.stdin.on 是等价的
 
 > node-scanf 是自己实现了一套缓冲和读取逻辑，比较复杂，代码太长了，不适合复制过来使用
 
