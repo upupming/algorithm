@@ -87,7 +87,7 @@ const _floor = Math.floor.bind(Math)
 const _round = Math.round.bind(Math)
 const _ceil = Math.ceil.bind(Math)
 const log = console.log.bind(console)
-//const log = _ => {}
+// const log = (...args: any[]) => {}
 
 作者：我不吃饼干呀
 链接：https://juejin.cn/post/6844903876206805005
