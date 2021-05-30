@@ -1,5 +1,21 @@
 # 算法模板
 
+Source: https://github.com/upupming/algorithm/blob/master/template.md
+
+<!-- https://stackoverflow.com/a/48507868/8242705 -->
+
+---
+papersize: a4
+documentclass:
+    - ctexart
+geometry: margin=2cm
+header-includes:
+    - \usepackage{fvextra}
+    - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+    - \usepackage{setspace}
+    - \singlespacing
+---
+
 - [算法模板](#算法模板)
     - [二分](#二分)
     - [高精度](#高精度)
@@ -100,6 +116,28 @@ while (l < r) {
 链接：https://www.acwing.com/blog/content/277/
 来源：AcWing
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
+```cpp
+// 通用构造函数
+for (int i = a.size() - 1; i >= 0; i--) A.push_back(a[i] - '0');
+// 通用输出函数
+void out(vector<int> &A) {
+    for (int i = A.size() - 1; i >= 0; i--) {
+        cout << A[i];
+    }
+}
+// 通用比较函数
+// A < B, A > 0, B > 0
+bool cmp(vector<int> &A, vector<int> &B) {
+    if (A.size() != B.size()) {
+        return A.size() < B.size();
+    }
+    for (int i = A.size() - 1; i >= 0; i--) {
+        if (A[i] != B[i]) return A[i] < B[i];
+    }
+    return false;
+}
+```
 
 ### 高精度加法
 
@@ -339,6 +377,34 @@ int search(string t) {
         p = trie[p][t[k] - 'a'];
         if (p == 0) return ans;
         ans += cnt[p];
+    }
+    return ans;
+}
+
+// 另一种在每个节点上都记录 cnt 的写法，支持 insert(a, -1) 删除操作
+int trie[N][2], tot = 1, cnt[N];
+void insert(int a, int v) {
+    int p = 1;
+    for (int i = 30; i >= 0; i--) {
+        int j = a >> i & 1;
+        if (trie[p][j] == 0) {
+            trie[p][j] = ++tot;
+        }
+        p = trie[p][j];
+        cnt[p] += v;
+    }
+}
+
+int query(int a) {
+    int ans = 0, p = 1;
+    for (int i = 30; i >= 0; i--) {
+        int j = a >> i & 1;
+        if (cnt[trie[p][!j]]) {
+            p = trie[p][!j];
+            ans |= 1 << i;
+        } else {
+            p = trie[p][j];
+        }
     }
     return ans;
 }
