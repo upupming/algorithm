@@ -17,13 +17,14 @@ void prework() {
     }
 }
 
+// ok 表示第 dep 位可以填 s[dep] 而仍然保证小于关系（由后半段回文保证了）
 LL dfs(int dep, bool ok) {
     bool newOk = (s[dep] < s[n - 1 - dep] || (s[dep] == s[n - 1 - dep] && ok));
     if (dep == (n - 1) / 2) {
-        // 边界情况，s[dep] == s[dep + 1] 的话，才用上一个位置的 ok
         if (n % 2 == 0) {
             return s[dep] - 'a' + newOk;
         } else {
+            // 边界情况，奇数长回文只能用上一位的 ok
             return s[dep] - 'a' + ok;
         }
     }
@@ -34,8 +35,7 @@ LL dfs(int dep, bool ok) {
     }
     // 填 s[dep]
     ans += dfs(dep + 1, newOk);
-    ans %= P;
-    return ans;
+    return ans % P;
 }
 
 LL solve() {

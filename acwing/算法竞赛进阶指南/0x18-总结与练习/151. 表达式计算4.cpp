@@ -71,12 +71,12 @@ void calc(char op) {
 }
 int main() {
     cin >> s;
-    int val = 0;
-    for (int i = 0; i < s.length(); i++) {
+    int val = 0, n = s.length();
+    for (int i = 0; i < n; i++) {
         // 多位数， 并且表达式是使用字符串逐字符存储的，我们只需要稍加判断，把连续的一段数字看成一个数即可。
         if (s[i] >= '0' && s[i] <= '9') {
             val = val * 10 + s[i] - '0';
-            if (s[i + 1] >= '0' && s[i + 1] <= '9') continue;
+            if (i + 1 < n && s[i + 1] >= '0' && s[i + 1] <= '9') continue;
             // 后缀表达式的一个数，直接入栈
             nums.push_back(val);
             val = 0;
