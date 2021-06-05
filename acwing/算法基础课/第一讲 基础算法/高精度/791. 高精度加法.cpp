@@ -4,7 +4,7 @@ using namespace std;
 
 string a, b;
 
-vector<int> add(vector<int> &A, vector<int> &B) {
+vector<int> add(const vector<int> &A, const vector<int> &B) {
     if (A.size() < B.size()) return add(B, A);
     vector<int> C;
     int t = 0;
@@ -18,7 +18,7 @@ vector<int> add(vector<int> &A, vector<int> &B) {
     return C;
 }
 
-void out(vector<int> &A) {
+void out(const vector<int> &A) {
     for (int i = A.size() - 1; i >= 0; i--) {
         cout << A[i];
     }

@@ -4,8 +4,9 @@ using namespace std;
 
 string a, b;
 
+// O(n)
 // A>=B
-vector<int> sub(vector<int> &A, vector<int> &B) {
+vector<int> sub(const vector<int> &A, const vector<int> &B) {
     vector<int> C;
     for (int i = 0, t = 0; i < A.size(); i++) {
         // 如果借过位，需要减去 t（t 是借位数量）
@@ -22,14 +23,15 @@ vector<int> sub(vector<int> &A, vector<int> &B) {
     return C;
 }
 
-void out(vector<int> &A) {
+void out(const vector<int> &A) {
     for (int i = A.size() - 1; i >= 0; i--) {
         cout << A[i];
     }
 }
 
+// O(n)
 // A < B
-bool cmp(vector<int> &A, vector<int> &B) {
+bool cmp(const vector<int> &A, const vector<int> &B) {
     if (A.size() != B.size()) {
         return A.size() < B.size();
     }
