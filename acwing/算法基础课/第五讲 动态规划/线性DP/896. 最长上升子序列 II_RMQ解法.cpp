@@ -1,5 +1,5 @@
 /*
-https://www.acwing.com/solution/content/53104/
+AcWing 3662 的简化版本
 时间复杂度 O(n log n)，不受数据大小影响
 */
 #include <algorithm>
@@ -9,7 +9,7 @@ https://www.acwing.com/solution/content/53104/
 using namespace std;
 const int N = 1e5 + 10;
 typedef long long LL;
-LL n, a[N], b[N], sum[N], maxSum[N];
+LL n, a[N], b[N], len[N], lenEndsWith[N];
 unordered_map<int, LL> mp;
 LL c[N];
 // 查询前缀和：查询序列 a 第 1~x 个数的和
@@ -39,18 +39,18 @@ int main() {
 
     // DP 过程，使用树状数组优化
     for (int i = 1; i <= n; i++) {
-        sum[i] = max(mp[a[i]], ask(mp[a[i]] - 1) + a[i]);
-        add(mp[a[i]], sum[i]);
-        // sum[i] = a[i];
+        len[i] = max(1ll, ask(mp[a[i]] - 1) + 1);
+        add(mp[a[i]], len[i]);
+        // sum[i] = 1;
         // for (int j = 1; j < a[i]; j++) {
-        //     sum[i] = max(sum[i], maxSum[j] + a[i]);
+        //     sum[i] = max(sum[i], maxSum[j] + 1);
         // }
         // maxSum[a[i]] = max(maxSum[a[i]], sum[i]);
     }
 
     LL ans = 0;
     for (int i = 1; i <= n; i++) {
-        ans = max(ans, sum[i]);
+        ans = max(ans, len[i]);
     }
     cout << ans << endl;
     return 0;
