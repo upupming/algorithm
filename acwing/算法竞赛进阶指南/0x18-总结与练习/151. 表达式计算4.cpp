@@ -40,11 +40,15 @@ void calc(char op) {
     // 从栈顶取出两个数
     int y = nums.back();
     nums.pop_back();
-    int x = 0;
+    int x;
     // 如果出现负号的情况：
-    // 1. 可能没有多的操作数了，前一个操作数当做 0 看待
-    // 2. 可能前面是左括号 (，需要先把这个负数计算出来（0 - y = -y）
-    if (nums.size() && !(op == '-' && ops.size() && ops.back() == '(')) {
+    if (
+        // 1. 可能没有多的操作数了，前一个操作数当做 0 看待
+        !nums.size() ||
+        // 2. 可能前面是左括号 (，需要先把这个负数计算出来（补一个 0 利用，0 - y = -y）
+        (op == '-' && ops.size() && ops.back() == '(')) {
+        x = 0;
+    } else {
         x = nums.back();
         nums.pop_back();
     }
@@ -82,8 +86,9 @@ int main() {
             val = 0;
         }
         // 左括号：直接入栈
-        else if (s[i] == '(')
+        else if (s[i] == '(') {
             ops.push_back('(');
+        }
         // 右括号：一直出栈直到遇见左括号
         else if (s[i] == ')') {
             while (ops.size() && ops.back() != '(') {
