@@ -19,6 +19,7 @@
     "typescript": "4.2.4"
   },
   "dependencies": {
+    "contest.js": "^1.1.0",
     "scanf": "1.1.2"
   }
 }

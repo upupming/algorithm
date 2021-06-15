@@ -7,6 +7,7 @@
 - 算法竞赛进阶指南 [ACWing](acwing/算法竞赛进阶指南/)
 - **我的算法模板 [template.md](template.md)**
     - TypeScript 算法模板 [template-typescript.md](template-typescript.md)
+    - [contest.js](https://github.com/harttle/contest.js) —— 用于 TS/JS 的算法模板库
 - 我的对拍程序 [matcher.cpp](matcher.cpp)
 - Google KickStart [kick-start](kick-start)
 - LeetCode [leetcode](leetcode)
