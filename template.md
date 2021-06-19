@@ -39,6 +39,7 @@ Source: https://github.com/upupming/algorithm/blob/master/template.md
     - [线段树](#线段树)
         - [支持区间修改的线段树（延迟标记）](#支持区间修改的线段树延迟标记)
     - [质数筛选](#质数筛选)
+    - [拓扑排序](#拓扑排序)
     - [Treap](#treap)
     - [最短路](#最短路)
         - [Dijkstra](#dijkstra)
@@ -481,6 +482,16 @@ for (int i = head[x]; i; i = Next[i]) {
     int y = ver[i], z = edge[i];
     // 找到了一条有向边 (x, y)，权值为 z
 }
+
+// 多测试用例时，初始化使用循环更好，例如: AcWing 3696
+tot = 0;
+for (int i = 1; i <= n; i++) {
+    head[i] = 0;
+    deg[i] = 0;
+}
+for (int i = 1; i <= m; i++) {
+    Next[i] = 0;
+}
 ```
 
 ## 最大公约数
@@ -743,6 +754,27 @@ void get_primes_l(int n) {
             st[primes[j] * i] = true;
             // primes[j] 一定是 i 的最小质因子（因为 y 是从小到大枚举的）
             if (i % primes[j] == 0) break;
+        }
+    }
+}
+```
+
+## 拓扑排序
+
+```cpp
+// 拓扑排序模板
+void topsort() {
+    queue<int> q;
+    for (int i = 1; i <= n; i++) {
+        if (deg[i] == 0) q.push(i);
+    }
+    while (q.size()) {
+        int x = q.front();
+        q.pop();
+        a[++cnt] = x;
+        for (int i = head[x]; i; i = Next[i]) {
+            int y = ver[i];
+            if (--deg[y] == 0) q.push(y);
         }
     }
 }
