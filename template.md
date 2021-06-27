@@ -489,6 +489,7 @@ for (int i = 1; i <= n; i++) {
     head[i] = 0;
     deg[i] = 0;
 }
+// Next 不需要初始化也可以的，因为每次 add 的时候会对用到的 Next 的改变都是基于 head 的
 for (int i = 1; i <= m; i++) {
     Next[i] = 0;
 }
