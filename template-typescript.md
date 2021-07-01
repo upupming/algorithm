@@ -94,3 +94,27 @@ const log = console.log.bind(console)
 来源：掘金
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 ```
+
+## 快速幂
+
+```ts
+function pow (a: number, b: number, p: number) {
+  let ans = 1 % p
+  while (b) {
+    if (b & 1) ans = Number(BigInt(ans) * BigInt(a) % BigInt(p))
+    a = Number(BigInt(a) * BigInt(a) % BigInt(p))
+    b >>= 1
+  }
+  return ans
+}
+
+function pow (a: bigint, b: bigint, p: bigint) {
+  let ans = 1n % p
+  while (b) {
+    if (b & 1n) ans = ans * a % p
+    a = a * a % p
+    b >>= 1n
+  }
+  return ans
+}
+```

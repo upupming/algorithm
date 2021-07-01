@@ -508,7 +508,7 @@ int gcd(int a, int b) {
 
 ### 扩展欧几里得算法
 
-求 ax + by = gcd(b, b) 的一对整数解 (x, y)。一般形式 ax + by = c 有解，当且仅当 d | c（d 是 a 和 b 的最大公约数）。
+求 ax + by = gcd(a, b) 的一对整数解 (x, y)。一般形式 ax + by = c 有解，当且仅当 d | c（d 是 a 和 b 的最大公约数）。
 
 ```cpp
 int extgcd(int a, int b, int &x, int &y) {
