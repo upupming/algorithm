@@ -294,6 +294,16 @@ int qpow(int a, int b, int p) {
     }
     return ans;
 }
+
+LL qpow(LL a, LL b, LL p) {
+    LL ans = 1ll % p;
+    while (b) {
+        if (b & 1) ans = 1ll * ans * a % p;
+        a = 1ll * a * a % p;
+        b >>= 1;
+    }
+    return ans;
+}
 ```
 
 ## lowbit 运算
