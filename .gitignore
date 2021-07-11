@@ -9,3 +9,5 @@ Info.plist
 data.ans
 out
 *.pdf
+*_input.txt
+*_output.txt

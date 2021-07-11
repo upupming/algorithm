@@ -619,8 +619,6 @@ void build(int p, int l, int r) {
     tree[p].dat = max(tree[2 * p].dat, tree[2 * p + 1].dat);
 }
 
-// 调用入口
-build(1, 1, n);
 
 // 线段树的单点修改，时间复杂度：O(log N)
 // 将 a[x] 的值修改为 v
@@ -640,9 +638,6 @@ void change(int p, int x, int v) {
     tree[p].dat = max(tree[2 * p].dat, tree[2 * p + 1].dat);
 }
 
-// 调用入口
-change(1, x, v);
-
 // 线段树的区间查询，时间复杂度：O(log N)
 // 查询序列 a 在区间 [l, r] 上的最大值
 int ask(int p, int l, int r) {
@@ -657,6 +652,10 @@ int ask(int p, int l, int r) {
     if (r >= mid + 1) val = max(val, ask(2 * p + 1, l, r));
     return val;
 }
+
+// 调用入口
+build(1, 1, n);
+change(1, x, v);
 ```
 
 ### 支持区间修改的线段树（延迟标记）
