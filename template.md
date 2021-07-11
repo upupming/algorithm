@@ -493,6 +493,9 @@ for (int i = head[x]; i; i = Next[i]) {
     // 找到了一条有向边 (x, y)，权值为 z
 }
 
+// 一般来说，memset 初始化就够了
+memset(head, 0, sizeof head), tot = 0;
+
 // 多测试用例时，初始化使用循环更好，例如: AcWing 3696
 tot = 0;
 for (int i = 1; i <= n; i++) {
@@ -979,7 +982,7 @@ for (int i = 1; i <= k; i++) {
         d[e[j].y] = min(d[e[j].y], last[e[j].x] + e[j].z);
     }
 }
-// SPFA 求最短路
+// SPFA 求最短路，在随机图上时间复杂度为 O(km)，其中 k 是较小的常数，在特殊构造的图上可能退化为 O(nm)
 void spfa() {
     queue<int> q;
     memset(d, 0x3f, sizeof d);
