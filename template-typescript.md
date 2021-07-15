@@ -2,6 +2,15 @@
 
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++
 
+- [算法模板（JS/TS 版本）](#算法模板jsts-版本)
+    - [输入](#输入)
+        - [`readline` 输入](#readline-输入)
+        - [`process.stdin.on` 输入](#processstdinon-输入)
+        - [fs 输入](#fs-输入)
+    - [常用函数缩写](#常用函数缩写)
+    - [快速幂](#快速幂)
+    - [邻接表](#邻接表)
+
 ## 输入
 
 JS 的输入输出是一个大坑，远不像 C++ 那么方便，[Node.js 环境](https://www.jianshu.com/p/70a04abd0823)下常用的有 `readline` 和 `process.stdin.on` 两种方法。[V8](https://codeforces.com/blog/entry/77741) 则是 `readline` 和 `print`。
@@ -116,5 +125,29 @@ function pow (a: bigint, b: bigint, p: bigint) {
     b >>= 1n
   }
   return ans
+}
+```
+
+## 邻接表
+
+```ts
+const head = new Array<number>(n + 1).fill(0)
+const ver = new Array<number>(m + 1).fill(0)
+const edge = new Array<number>(m + 1).fill(0)
+const next = new Array<number>(m + 1).fill(0)
+let tot = 0
+function add (x: number, y: number, z: number) {
+  ver[++tot] = y
+  edge[tot] = z
+  next[tot] = head[x]
+  head[x] = tot
+}
+
+for (const e of edges) {
+  add(e[0], e[1], e[2])
+  add(e[1], e[0], e[2])
+}
+for (let i = head[x]; i; i = next[x]) {
+  const [y, z]  = [ver[i], edge[i]]
 }
 ```
