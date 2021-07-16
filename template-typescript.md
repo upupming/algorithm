@@ -130,6 +130,8 @@ function pow (a: bigint, b: bigint, p: bigint) {
 
 ## 邻接表
 
+> 因为 JS 里面没有静态数组，所以用数组模拟邻接表没有意义，这个方法显得有些鸡肋
+
 ```ts
 const head = new Array<number>(n + 1).fill(0)
 const ver = new Array<number>(m + 1).fill(0)
