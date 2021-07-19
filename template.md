@@ -30,6 +30,8 @@ Source: https://github.com/upupming/algorithm/blob/master/template.md
     - [快速排序](#快速排序)
     - [归并排序](#归并排序)
     - [离散化](#离散化)
+    - [单调栈](#单调栈)
+    - [单调队列](#单调队列)
     - [Trie 树](#trie-树)
     - [邻接表模板](#邻接表模板)
     - [最大公约数](#最大公约数)
@@ -406,6 +408,55 @@ int query(int x) {
     return mp[x];
 }
 ```
+
+## 单调栈
+
+```cpp
+int lft[N], rht[N], stk[N], tt;
+// 哨兵
+h[0] = -1, h[n + 1] = -1;
+tt = 0;
+stk[++tt] = 0;
+for (int i = 1; i <= n; i++) {
+    while (h[stk[tt]] >= h[i]) tt--;
+    lft[i] = stk[tt];
+    stk[++tt] = i;
+}
+tt = 0;
+stk[++tt] = n + 1;
+for (int i = n; i >= 1; i--) {
+    while (h[stk[tt]] >= h[i]) tt--;
+    rht[i] = stk[tt];
+    stk[++tt] = i;
+}
+```
+
+- 直方图中的最大矩形
+- 城市游戏
+- 最大面积
+- LeetCode 795. Number of Subarrays with Bounded Maximum
+
+## 单调队列
+
+```cpp
+for (int i = 1; i <= n; i++) {
+    cin >> a, sum += a;
+    // 队首一直出队直到满足 <=m 条件
+    while (!dq.empty() && (i - dq.front().second > m)) {
+        dq.pop_front();
+    }
+    if (dq.empty()) {
+        ans = max(ans, sum);
+    } else {
+        ans = max(ans, sum - dq.front().first);
+        // 不断删除队尾的不会优于当前 i 的左端点
+        while (!dq.empty() && dq.back().first >= sum) dq.pop_back();
+    }
+    dq.emplace_back(sum, i);
+}
+```
+
+- 最大子序和
 
 ## Trie 树
 
