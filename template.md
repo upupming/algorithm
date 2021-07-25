@@ -435,6 +435,7 @@ for (int i = n; i >= 1; i--) {
 - 城市游戏
 - 最大面积
 - LeetCode 795. Number of Subarrays with Bounded Maximum
+- LeetCode 1944. Number of Visible People in a Queue (套路比较深的单调栈)
 
 ## 单调队列
 
