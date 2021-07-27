@@ -372,15 +372,13 @@ class RBTree<T> {
   }
 }
 
-class TreeMultiSet<T = number> {
+class TreeSet<T = number> {
   #size: number
   tree: RBTree<T>
-  counts: Map<T, number>
   compare: (l: T, r: T) => boolean
   constructor (collection: T[] = [], compare = (l: T, r: T) => l < r) {
     this.#size = 0
     this.tree = new RBTree(compare)
-    this.counts = new Map()
     this.compare = compare
     for (const val of collection) this.add(val)
   }
@@ -393,24 +391,16 @@ class TreeMultiSet<T = number> {
     return !!this.tree.find(val)
   }
 
-  add (val: T): void {
-    console.log('add', val)
-    this.tree.insert(val)
-    this.increase(val)
-    this.#size++
+  add (val: T): boolean {
+    const added = this.tree.insert(val)
+    this.#size += added ? 1 : 0
+    return added
   }
 
-  delete (val: T): void {
-    console.log('delete', val)
-    this.decrease(val)
-    if (this.count(val) === 0) {
-      this.tree.deleteByValue(val)
-    }
-    this.#size--
-  }
-
-  count (val: T): number {
-    return this.counts.get(val) ?? 0
+  delete (val: T): boolean {
+    const deleted = this.tree.deleteByValue(val)
+    this.#size -= deleted ? 1 : 0
+    return deleted
   }
 
   ceiling (val: T): T | undefined {
@@ -469,49 +459,38 @@ class TreeMultiSet<T = number> {
     return lower?.data
   }
 
+  * [Symbol.iterator] (): Generator<T, void, void> {
+    for (const val of this.values()) yield val
+  }
+
   * keys (): Generator<T, void, void> {
     for (const val of this.values()) yield val
   }
 
   * values (): Generator<T, void, void> {
-    for (const val of this.tree.inOrder()) {
-      let count = this.count(val)
-      while (count--) yield val
-    }
-  }
-
-  decrease (val: T): void {
-    this.counts.set(val, this.count(val) - 1)
-  }
-
-  increase (val: T): void {
-    this.counts.set(val, this.count(val) + 1)
+    for (const val of this.tree.inOrder()) yield val
   }
 }
 
-/*
-将 queries 从小到大排序，处理查询的时候将所有开始时间 <= 查询的入堆，然后将所有结束时间 < 查询的出堆，堆里面的就是满足情况的区间。因此我们也要将 intervals 按照开始时间从小到大排序；有点类似单调队列
-*/
-function minInterval (intervals: number[][], queries: number[]): number[] {
-  intervals.sort((a, b) => a[0] - b[0])
-  const [n, m] = [intervals.length, queries.length]
-  const idx = [...Array(m)].map((_, idx) => idx)
-  const ans = Array<number>(m).fill(-1)
-  idx.sort((i, j) => queries[i] - queries[j])
-  const heap = new Heap((i, j) => intervals[i][1] < intervals[j][1])
-  const set = new TreeMultiSet()
-  for (let i = 0, j = 0; i < m; i++) {
-    while (j < n && intervals[j][0] <= queries[idx[i]]) {
-      set.add(intervals[j][1] - intervals[j][0] + 1)
-      heap.push(j++)
+function smallestChair (times: number[][], targetFriend: number): number {
+  const n = times.length
+  times.forEach((t, i) => t.push(i))
+  times.sort((a, b) => a[0] - b[0])
+  const seats = new TreeSet([...Array(n)].map((_, i) => i))
+  const heap = new Heap<{
+    leave: number
+    seat: number
+  }>((a, b) => a.leave < b.leave)
+  for (const time of times) {
+    const [arrival, leaving] = time
+    while (heap.size() && heap.top().leave <= arrival) {
+      const { seat } = heap.pop()
+      seats.add(seat)
     }
-    while (heap.size() && intervals[heap.top()][1] < queries[idx[i]]) {
-      const k = heap.pop()
-      set.delete(intervals[k][1] - intervals[k][0] + 1)
-    }
-    if (heap.size()) {
-      ans[idx[i]] = Number(set.values().next().value)
-    }
+    const s = seats.values().next().value as number
+    seats.delete(s)
+    heap.push({ leave: leaving, seat: s })
+    if (time[2] === targetFriend) return s
   }
-  return ans
+  return -1
 };
