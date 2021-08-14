@@ -1,72 +1,59 @@
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 1e6 + 10;
+const int N = 1e5 + 10;
 
 typedef long long LL;
-#define long long int;
 
-int t;
-LL n, c, a[N], b[N], l[N], r[N], m, diffCnt[N], sum[N];
-vector<LL> b_i;
+int t, n, m;
+LL c, l[N], r[N], a[4 * N], diff[4 * N], cnt[4 * N];
 
-// 离散化
-void discrete() {
-    sort(a + 1, a + 2 * n + 1);
-    for (int i = 1; i <= 2 * n; i++) {
-        // 也可用 STL 的 unique 函数
-        if (i == 1 || a[i] != a[i - 1])
-            b[++m] = a[i];
-    }
-    for (int i = 1; i <= m; i++) {
-        b_i.push_back(b[i]);
-        if (i < m && b_i.back() + 1 < b[i + 1]) b_i.push_back(b_i.back() + 1);
-    }
-}
-// 查询 x 映射为哪个 1-m 之间的整数
+// 查询 x 映射为哪个 [0, m) 之间的整数
 int query(LL x) {
-    return lower_bound(b_i.begin(), b_i.end(), x) - b_i.begin();
+    return lower_bound(a, a + m, x) - a;
 }
-
 LL solve() {
     cin >> n >> c;
-    m = 0, b_i.clear();
-    memset(diffCnt, 0, sizeof diffCnt);
-    for (int i = 1; i <= n; i++) {
+    for (int i = 0; i < n; i++) {
         cin >> l[i] >> r[i];
-        a[2 * i - 1] = l[i], a[2 * i] = r[i];
+        a[4 * i] = l[i], a[4 * i + 1] = r[i];
+        a[4 * i + 2] = l[i] + 1, a[4 * i + 3] = r[i] - 1;
     }
-    discrete();
-    for (int i = 1; i <= n; i++) {
-        int x = query(l[i]), y = query(r[i]);
-        // [x+1, y-1] 都 +1
-        diffCnt[x + 1]++, diffCnt[y]--;
+    // 离散化
+    sort(a, a + 4 * n);
+    m = unique(a, a + 4 * n) - a;
+    for (int i = 0; i < m; i++) diff[i] = 0;
+    // 预处理差分数组
+    for (int i = 0; i < n; i++) {
+        // 开区间 (L, R) 的覆盖次数都 +1
+        diff[query(l[i] + 1)] += 1;
+        diff[query(r[i])] -= 1;
     }
-    sum[0] = diffCnt[0];
-    for (int i = 1; i < b_i.size(); i++) {
-        sum[i] = sum[i - 1] + diffCnt[i];
+    // 差分数组求和得到每个点处的覆盖次数
+    cnt[0] = diff[0];
+    for (int i = 1; i < m; i++) {
+        cnt[i] = cnt[i - 1] + diff[i];
     }
+    // 按照覆盖次数从大到小对坐标进行排序
     vector<int> idx;
-    for (int i = 0; i < b_i.size(); i++) {
-        idx.push_back(i);
-    }
-    sort(idx.begin(), idx.end(), [](auto i, auto j) {
-        return sum[i] > sum[j];
+    for (int i = 0; i < m; i++) idx.push_back(i);
+    sort(idx.begin(), idx.end(), [](int i, int j) {
+        return cnt[i] > cnt[j];
     });
     LL ans = n;
-    for (int i = 0; i < b_i.size() && c > 0; i++) {
-        int j = idx[i] + 1;
-        if (j >= b_i.size()) continue;
-        LL len = b_i[j];
-        len -= b_i[j - 1];
-
-        LL times = min(c, len);
-        c -= times;
-        ans += sum[j - 1] * times;
+    // 按照被区间覆盖次数从大到小来切
+    for (int i = 0; i < m && c; i++) {
+        int j = idx[i];
+        if (j + 1 >= m) continue;
+        // 左开右闭区间 [a[j], a[j+1])
+        LL d = a[j + 1] - a[j];
+        // 区间上每个点都可以切 1 次，获得 cnt[j] 个新区间
+        LL tmp = min(d, c) * cnt[j];
+        ans += tmp, c -= min(d, c);
     }
     return ans;
 }
 
-signed main() {
+int main() {
     cin >> t;
     for (int i = 1; i <= t; i++) {
         printf("Case #%d: %lld\n", i, solve());

@@ -4,51 +4,56 @@ const int N = 1e5 + 10;
 
 typedef long long LL;
 
-int t;
-LL n, m, a, b;
-LL diff[N], cnt[N];
+int t, n, m;
+LL s;
+// key: 区间起点, value: 区间终点
+map<LL, LL> intervals;
 
+void add(LL a, LL b) {
+    if (a <= b)
+        intervals.insert({a, b});
+}
 void solve() {
     cin >> n >> m;
-    memset(diff, 0, sizeof diff);
-    for (int i = 1; i <= n; i++) {
-        cin >> a >> b;
-        // [a, b] 区间都 +1
-        diff[a]++, diff[b + 1]--;
+    intervals.clear();
+    for (int i = 0; i < n; i++) {
+        LL A, B;
+        cin >> A >> B;
+        intervals[A] = B;
     }
-    set<LL> s;
-    for (int i = 1; i < N; i++) {
-        cnt[i] = cnt[i - 1] + diff[i];
-        if (cnt[i] == 1) {
-            // cout << i << ", ";
-            s.insert(i);
-        }
-    }
-    // cout << endl;
-    for (int i = 1; i <= m; i++) {
-        // 二分查找
-        LL x;
-        cin >> x;
-        auto it = s.lower_bound(x);
-        auto it1 = it;
-        LL a, b;
-        if (it == s.end())
-            a = 1e19;
-        else
-            a = *it;
-        if (it == s.begin())
-            b = -1e19;
-        else {
-            it1--;
-            b = *it1;
-        }
-        if (abs(x - a) < abs(x - b)) {
-            cout << a << " ";
-            s.erase(a);
+    for (int i = 0; i < m; i++) {
+        cin >> s;
+        auto it = intervals.upper_bound(s);
+        auto [x, y] = *it;
+        LL ch;
+        if (it == intervals.begin()) {
+            ch = x;
+            intervals.erase(it);
+            add(x + 1, y);
         } else {
-            cout << b << " ";
-            s.erase(b);
+            auto it1 = it;
+            it1--;
+            auto [l, r] = *it1;
+            if (s <= r) {
+                ch = s;
+                intervals.erase(it1);
+                add(l, s - 1);
+                add(s + 1, r);
+            } else {
+                auto u = abs(r - s), v = abs(x - s);
+                // 相等，选难度小的题目
+                if (u <= v) {
+                    ch = r;
+                    intervals.erase(it1);
+                    add(l, r - 1);
+                } else {
+                    ch = x;
+                    intervals.erase(it);
+                    add(x + 1, y);
+                }
+            }
         }
+        cout << ch << " ";
     }
     cout << endl;
 }
