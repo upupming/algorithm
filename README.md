@@ -4,13 +4,16 @@
 
 主要存放训练刷题时的代码，有些有 README，有些源代码里面有注释可以看。
 
-- 算法竞赛进阶指南 [ACWing](acwing/算法竞赛进阶指南/)
+- [AcWing](acwing)
+    - [算法基础课](acwing/算法基础课)
+    - [算法竞赛进阶指南](acwing/算法竞赛进阶指南)
 - **我的算法模板 [template.md](template.md)**
     - TypeScript 算法模板 [template-typescript.md](template-typescript.md)
     - [contest.js](https://github.com/harttle/contest.js) —— 用于 TS/JS 的算法模板库
 - 我的对拍程序 [matcher.cpp](matcher.cpp)
 - Google KickStart [kick-start](kick-start)
 - LeetCode [leetcode](leetcode)
+    - [残酷刷题](leetcode/残酷刷题)
 - 伪代码 [pseudoCode](pseudoCode)
 - 其他的都是之前刷 PAT 时候的题目
 
