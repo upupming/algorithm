@@ -8,6 +8,10 @@
 - 1105. Filling Bookcase Shelves
 - 1043. Partition Array for Maximum Sum
 
+#### LIS
+
+- 300. Longest Increasing Subsequence
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
