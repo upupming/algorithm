@@ -5,9 +5,9 @@
 #include <ctime>
 #include <iostream>
 
-const std::string bf = "kick-start/2021/RoundB/D.\\ naive.cpp";
-const std::string algo = "kick-start/2021/RoundB/D.\\ Truck\\ Delivery.cpp";
-const std::string randomGenerator = "kick-start/2021/RoundB/D.\\ random.cpp";
+const std::string bf = "kick-start/2021/RoundE/a.naive.cpp";
+const std::string algo = "kick-start/2021/RoundE/a.cpp";
+const std::string randomGenerator = "random.cpp";
 
 /*
 封装一下 `system`，支持 ctrl + c 退出整个对拍程序
