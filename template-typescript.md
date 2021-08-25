@@ -3,13 +3,14 @@
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++
 
 - [算法模板（JS/TS 版本）](#算法模板jsts-版本)
-    - [输入](#输入)
-        - [`readline` 输入](#readline-输入)
-        - [`process.stdin.on` 输入](#processstdinon-输入)
-        - [fs 输入](#fs-输入)
-    - [常用函数缩写](#常用函数缩写)
-    - [快速幂](#快速幂)
-    - [邻接表](#邻接表)
+  - [输入](#输入)
+    - [`readline` 输入](#readline-输入)
+    - [`process.stdin.on` 输入](#processstdinon-输入)
+    - [fs 输入](#fs-输入)
+  - [常用函数缩写](#常用函数缩写)
+  - [快速幂](#快速幂)
+  - [邻接表](#邻接表)
+  - [快速幂](#快速幂-1)
 
 ## 输入
 
@@ -151,5 +152,19 @@ for (const e of edges) {
 }
 for (let i = head[x]; i; i = next[x]) {
   const [y, z]  = [ver[i], edge[i]]
+}
+```
+
+## 快速幂
+
+```ts
+function qpow (a: bigint, b: bigint, p: bigint) {
+  let ans = 1n % p
+  while (b) {
+    if (b & 1n) ans = ans * a % p
+    a = a * a % p
+    b >>= 1n
+  }
+  return ans
 }
 ```
