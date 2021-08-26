@@ -610,7 +610,7 @@ int get(int x) {
 // Merge 操作，同上，可以认为时间复杂度为常数
 void merge(int x, int y) {
     int fx = get(x), fy = get(y);
-    if (fx == fy) return;
+    if (fx == fy) return; // 这一行其实可以删掉，因为如果 fx == fy 的话，fx 一定是根节点，一定有 fa[fx] == fx，再附一下值不会有任何影响
     if (sz[fx] < sz[fy]) {
         fa[fx] = fy;
         sz[fy] += sz[fx];

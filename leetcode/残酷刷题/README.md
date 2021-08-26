@@ -16,6 +16,10 @@
 - 354. Russian Doll Envelopes
     - w 递增，h 递减排序，在 h 上求 LIS 一定就是答案
 
+### 并查集
+
+- 1970. Last Day Where You Can Still Cross
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
