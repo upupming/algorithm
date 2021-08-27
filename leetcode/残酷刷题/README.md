@@ -18,7 +18,10 @@
 
 ### 并查集
 
+#### 时光倒流
+
 - 1970. Last Day Where You Can Still Cross
+- 803. Bricks Falling When Hit
 
 ## Links
 
