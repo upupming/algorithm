@@ -23,6 +23,10 @@
 - 1970. Last Day Where You Can Still Cross
 - 803. Bricks Falling When Hit
 
+### 回文串
+
+- 5. Longest Palindromic Substring
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
