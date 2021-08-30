@@ -26,6 +26,8 @@
 ### 回文串
 
 - 5. Longest Palindromic Substring
+- 1960. Maximum Product of the Length of Two Palindromic Substrings
+    - Manacher + 双指针
 
 ## Links
 
