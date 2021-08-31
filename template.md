@@ -1247,7 +1247,7 @@ typedef unsigned long long ULL;
 const int P = 131;
 p[0] = 1;
 int n = s.length();
-for (int i = 1, j = n; i <= n; i++, j--) {
+for (int i = 1; i <= n; i++) {
     f[i] = f[i - 1] * P + (s[i - 1] - 'a' + 1);
     p[i] = P * p[i - 1];
 }
@@ -1266,6 +1266,12 @@ if (getHash(l1, r1) == getHash(l2, r2)) {
 注意，「子串」和「子序列」是不同的，「子串」是原字符串中连续的一段，「子序列」原字符串中选一些字符保持原来的顺序构成的新的串。
 
 ```cpp
+// p[i]表示 Str 中以下标i为回文中心的最大回文半径。
+// 如果我们得到了p[i]，那么p[i] - 1就是原串 S 以i为回文中心的最大回文长度
+// rt表示已经计算过的回文串能达到的最远右边界的下一个位置,mid表示rt所对应的最左侧的回文中心
+// rt=max(j+p[j]),j∈[1,i−1]
+// mid + p[mid] == rt
+
 int manacher() {
     n = strlen(s);
     str[0] = '!', str[1] = '#'; /* str[0]为哨兵 */
