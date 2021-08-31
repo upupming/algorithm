@@ -23,11 +23,12 @@
 - 1970. Last Day Where You Can Still Cross
 - 803. Bricks Falling When Hit
 
-### 回文串
+### 回文串 (DP / Manacher)
 
 - 5. Longest Palindromic Substring
 - 1960. Maximum Product of the Length of Two Palindromic Substrings
     - Manacher + 双指针
+- 214. Shortest Palindrome
 
 ## Links
 
