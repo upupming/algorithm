@@ -30,6 +30,11 @@
     - Manacher + 双指针
 - 214. Shortest Palindrome
 
+### 最短路
+
+- 1976. Number of Ways to Arrive at Destination
+    - 最短路 + DP
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
