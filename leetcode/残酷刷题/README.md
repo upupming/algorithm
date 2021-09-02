@@ -7,6 +7,8 @@
 - 1959. Minimum Total Space Wasted With K Resizing Operations
 - 1105. Filling Bookcase Shelves
 - 1043. Partition Array for Maximum Sum
+- 1977. Number of Ways to Separate Numbers
+    - LCS + 区间 DP
 
 #### LIS
 

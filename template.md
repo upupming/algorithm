@@ -1113,6 +1113,7 @@ for (int k = 1; k <= n; k++) {
 
 ```cpp
 // Prim 采用加点的思想，时间复杂度为 O(N^2)，堆优化版为 O(M log N)，适用于稠密图，一般直接用朴素版即可
+// 因为在点少的时候使用，如果点多的话，直接用 Kruskal 就好了，而且 Kruskal 好写很多
 void prim() {
     memset(d, 0x3f, sizeof d);
     d[1] = 0;
