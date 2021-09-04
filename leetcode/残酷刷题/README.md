@@ -18,6 +18,10 @@
 - 354. Russian Doll Envelopes
     - w 递增，h 递减排序，在 h 上求 LIS 一定就是答案
 
+#### 背包
+
+- 1981. Minimize the Difference Between Target and Chosen Elements
+
 ### 并查集
 
 #### 时光倒流
