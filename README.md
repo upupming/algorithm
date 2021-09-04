@@ -40,6 +40,7 @@
     - [群友Bill0412的博客](https://kickstart.best/)
     - [OTTFF的B站](https://space.bilibili.com/97228279/)
     - [zerotrac的B站](https://space.bilibili.com/3203291/)
+    - [LeetCode 题目难度分查询](https://zerotrac.github.io/leetcode_problem_rating/)
 - [lucifer1004的CP笔记](https://cp-wiki.vercel.app/)
     - [lucifer1004的B站](https://space.bilibili.com/2403384/)
 - [tiger_2005的B站](https://space.bilibili.com/350620554/)
