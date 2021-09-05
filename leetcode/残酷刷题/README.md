@@ -10,6 +10,11 @@
 - 1977. Number of Ways to Separate Numbers
     - LCS + 区间 DP
 
+#### 状态压缩
+
+- 1986. Minimum Number of Work Sessions to Finish the Tasks
+    - 子集遍历
+
 #### LIS
 
 - 300. Longest Increasing Subsequence
