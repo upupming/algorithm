@@ -792,7 +792,7 @@ long long ask(int p, int l, int r) {
 ## 质数筛选
 
 ```cpp
-// Eratosthenes 筛法
+// Eratosthenes 筛法，时间复杂度 O(\sum_{质数 p <= n} n/p) = O(n log log n)
 void primes(int n) {
     // 合数标记
     memset(v, 0, sizeof v);
@@ -817,7 +817,8 @@ void get_primes_l(int n) {
         for (int j = 0; primes[j] <= n / i; j++) {
             // primes[j] 是 primes[j] * i 的最小质因子
             st[primes[j] * i] = true;
-            // primes[j] 一定是 i 的最小质因子（因为 y 是从小到大枚举的）
+            // primes[j] 一定是 i 的最小质因子（因为 j 是从小到大枚举的）
+            // 之所以要 break 是因为后面的 primes[j+1] 不再是 primes[j+1] * i 的最小质因子了，而是 primes[j]，因为 i % primes[j] == 0
             if (i % primes[j] == 0) break;
         }
     }
