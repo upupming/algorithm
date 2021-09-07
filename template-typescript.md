@@ -49,11 +49,7 @@ rl.on('line', function (line) {
 - 缺点: `end` 在手动输入的情况下无法触发，因此需要加 `SIGINT`，利用 `Ctrl+C` 来触发结束命令。
 
 ```ts
-process.stdin.resume()
-process.stdin.setEncoding('utf8')
-
-let inputArray
-
+let input = ''
 process.stdin.on('data', function (data) {
   input += String(data)
 })
@@ -67,6 +63,24 @@ process.on('SIGINT', function () {
 
 function main () {
   const inputArray = input.split('\n')
+  console.log(inputArray)
+}
+
+```
+
+Update: 有些 OJ (AcWing) 不支持 `'/dev/stdin'`，最简洁的办法就是：
+
+```js
+let input = ''
+let lines
+process.stdin.on('data', data => input += data)
+process.stdin.on('end', () => {
+  lines = input.split('\n')
+  main()
+})
+
+function main () {
+  console.log(lines)
 }
 
 ```
