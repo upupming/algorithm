@@ -15,6 +15,7 @@
 - 1986. Minimum Number of Work Sessions to Finish the Tasks
     - 子集遍历
 - 1494. Parallel Courses II
+- 1655. Distribute Repeating Integers
 
 #### LIS
 
