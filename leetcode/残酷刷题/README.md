@@ -29,6 +29,10 @@
 
 - 1981. Minimize the Difference Between Target and Chosen Elements
 
+#### subsequence 计数
+
+- 940. Distinct Subsequences II
+
 ### 并查集
 
 #### 时光倒流
