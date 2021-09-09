@@ -32,6 +32,7 @@
 #### subsequence 计数
 
 - 940. Distinct Subsequences II
+- 1987. Number of Unique Good Subsequences
 
 ### 并查集
 
