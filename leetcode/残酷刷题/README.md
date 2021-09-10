@@ -33,6 +33,7 @@
 
 - 940. Distinct Subsequences II
 - 1987. Number of Unique Good Subsequences
+- 1994. The Number of Good Subsets
 
 ### 并查集
 
