@@ -2,6 +2,10 @@
 
 ## Problems
 
+### 排序
+
+- 1996. The Number of Weak Characters in the Game
+
 ### DP
 
 - 1959. Minimum Total Space Wasted With K Resizing Operations
