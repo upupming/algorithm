@@ -58,6 +58,13 @@
 - 1976. Number of Ways to Arrive at Destination
     - 最短路 + DP
 
+### 数学
+
+#### 质数筛
+
+- 952. Largest Component Size by Common Factor
+    - 质数筛 + DP
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
