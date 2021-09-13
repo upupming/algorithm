@@ -64,6 +64,7 @@
 
 - 952. Largest Component Size by Common Factor
     - 质数筛 + DP
+- 1998. GCD Sort of an Array
 
 ## Links
 
