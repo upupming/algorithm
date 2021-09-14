@@ -41,6 +41,8 @@
 
 ### 并查集
 
+- 1627. Graph Connectivity With Threshold
+
 #### 时光倒流
 
 - 1970. Last Day Where You Can Still Cross
