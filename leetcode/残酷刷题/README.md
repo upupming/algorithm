@@ -20,6 +20,7 @@
     - 子集遍历
 - 1494. Parallel Courses II
 - 1655. Distribute Repeating Integers
+- 2002. Maximum Product of the Length of Two Palindromic Subsequences
 
 #### LIS
 
