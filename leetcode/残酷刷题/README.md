@@ -22,6 +22,7 @@
 - 1655. Distribute Repeating Integers
 - 2002. Maximum Product of the Length of Two Palindromic Subsequences
 - 1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
+- 1452. People Whose List of Favorite Companies Is Not a Subset of Another List
 
 #### LIS
 
