@@ -6,6 +6,10 @@
 
 - 1996. The Number of Weak Characters in the Game
 
+#### Quick Select
+
+- 973. K Closest Points to Origin
+
 ### DP
 
 - 1959. Minimum Total Space Wasted With K Resizing Operations
