@@ -9,6 +9,11 @@
 #### Quick Select
 
 - 973. K Closest Points to Origin
+- 347. Top K Frequent Elements
+
+### 双指针
+
+- 2009. Minimum Number of Operations to Make Array Continuous
 
 ### DP
 
