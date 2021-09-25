@@ -13,7 +13,7 @@
 
 ### 双指针
 
-- 2009. Minimum Number of Operations to Make Array Continuous
+- 2009. Minimum Number of Operations to Make Array Continuousg
 
 ### DP
 
@@ -22,6 +22,7 @@
 - 1043. Partition Array for Maximum Sum
 - 1977. Number of Ways to Separate Numbers
     - LCS + 区间 DP
+- 2008. Maximum Earnings From Taxi
 
 #### 状态压缩
 
