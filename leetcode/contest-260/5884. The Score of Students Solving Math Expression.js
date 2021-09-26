@@ -36,30 +36,35 @@ const scoreOfStudents = function (s, answers) {
     return 0
   }
 
-  const p = new Set()
-  // let cnt = 0
-  dfs(a, stk)
-  function dfs (a, stk) {
-    // if (cnt % 1e3 === 0) { console.log(cnt) }
-    // console.log(a, stk)
-    if (stk.length === 0) {
-      p.add(a[0])
-      return
-    }
-    const calc = (x, y, op) => {
-      // console.log(x, y, op, op === '*' ? x * y : x + y)
-      return op === '*' ? x * y : x + y
-    }
-    for (let i = 0; i < stk.length; i++) {
-      const op = stk[i]
-      const tmp = calc(a[i], a[i + 1], op)
-      if (tmp > 1000 || tmp === 0) continue
-      dfs(
-        [...a.slice(0, i), tmp, ...a.slice(i + 2)],
-        [...stk.slice(0, i), ...stk.slice(i + 1)]
-      )
+  const m = stk.length
+  const calc = (x, y, op) => {
+    return op === '*' ? (x * y) : (x + y)
+  }
+  const dp = [...Array(m + 1)].map(() => [])
+  for (let len = 1; len <= m; len++) {
+    for (let i = 0; i + len - 1 < m; i++) {
+      const j = i + len - 1
+      if (len === 1) {
+        dp[i][j] = new Set([calc(a[i], a[i + 1], stk[i])])
+        continue
+      }
+      const s = new Set()
+      for (let k = i; k <= j; k++) {
+        const sx = k === i ? [a[i]] : dp[i][k - 1]
+        const sy = k === j ? [a[j + 1]] : dp[k + 1][j]
+        for (const x of sx) {
+          for (const y of sy) {
+            const b = calc(x, y, stk[k])
+            if (b <= 1000) s.add(b)
+          }
+        }
+      }
+      // console.log(i, j, s)
+      dp[i][j] = s
     }
   }
+
+  const p = dp[0][m - 1]
 
   // console.log(correct, p)
   let ans = 0

@@ -23,6 +23,7 @@
 - 1977. Number of Ways to Separate Numbers
     - LCS + 区间 DP
 - 2008. Maximum Earnings From Taxi
+- 1235. Maximum Profit in Job Scheduling
 
 #### 状态压缩
 
