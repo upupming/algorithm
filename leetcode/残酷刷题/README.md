@@ -24,6 +24,7 @@
     - LCS + 区间 DP
 - 2008. Maximum Earnings From Taxi
 - 1235. Maximum Profit in Job Scheduling
+- 1751. Maximum Number of Events That Can Be Attended II
 
 #### 状态压缩
 
