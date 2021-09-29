@@ -83,6 +83,10 @@
     - 质数筛 + DP
 - 1998. GCD Sort of an Array
 
+## 搜索
+
+- 2014. Longest Subsequence Repeated k Times
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
