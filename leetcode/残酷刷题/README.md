@@ -87,6 +87,10 @@
 
 - 2014. Longest Subsequence Repeated k Times
 
+## 表达式求值
+
+- 227. Basic Calculator II
+
 ## Links
 
 - https://wisdompeak.github.io/lc-score-board/
