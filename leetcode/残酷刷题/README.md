@@ -14,6 +14,7 @@
 ### 双指针
 
 - 2009. Minimum Number of Operations to Make Array Continuousg
+- 1004. Max Consecutive Ones III
 
 ### DP
 
@@ -91,6 +92,7 @@
 
 - 227. Basic Calculator II
 - 241. Different Ways to Add Parentheses
+- 679. 24 Game
 
 ## Links
 
