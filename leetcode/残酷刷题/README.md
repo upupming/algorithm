@@ -15,6 +15,7 @@
 
 - 2009. Minimum Number of Operations to Make Array Continuousg
 - 1004. Max Consecutive Ones III
+- 2024. Maximize the Confusion of an Exam
 
 ### DP
 
