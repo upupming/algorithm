@@ -2,6 +2,10 @@
 
 ## Problems
 
+### 前缀和
+
+- 2025. Maximum Number of Ways to Partition an Array
+
 ### 排序
 
 - 1996. The Number of Weak Characters in the Game
