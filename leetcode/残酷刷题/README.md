@@ -21,6 +21,7 @@
 - 1004. Max Consecutive Ones III
 - 2024. Maximize the Confusion of an Exam
 - 424. Longest Repeating Character Replacement
+- 930. Binary Subarrays With Sum
 
 ### DP
 
