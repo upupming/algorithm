@@ -38,6 +38,8 @@
 - 2008. Maximum Earnings From Taxi
 - 1235. Maximum Profit in Job Scheduling
 - 1751. Maximum Number of Events That Can Be Attended II
+- 1478. Allocate Mailboxes
+    - DP + 货仓选址
 
 #### 状态压缩
 
