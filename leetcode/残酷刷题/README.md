@@ -101,6 +101,8 @@
 ## 搜索
 
 - 2014. Longest Subsequence Repeated k Times
+- 1755. Closest Subsequence Sum
+    - 双向搜索
 
 ## 表达式求值
 
