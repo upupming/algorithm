@@ -103,6 +103,8 @@
 - 2014. Longest Subsequence Repeated k Times
 - 1755. Closest Subsequence Sum
     - 双向搜索
+- 2045. Second Minimum Time to Reach Destination
+    - BFS
 
 ## 表达式求值
 
