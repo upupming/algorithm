@@ -103,8 +103,12 @@
 - 2014. Longest Subsequence Repeated k Times
 - 1755. Closest Subsequence Sum
     - 双向搜索
+
+### BFS
+
 - 2045. Second Minimum Time to Reach Destination
-    - BFS
+- 1263. Minimum Moves to Move a Box to Their Target Location
+    - Deque, 只有 0 和 1 两个边权
 
 ## 表达式求值
 
