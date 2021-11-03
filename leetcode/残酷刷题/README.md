@@ -113,6 +113,7 @@
 ### DFS
 
 - 543. Diameter of Binary Tree
+- 687. Longest Univalue Path
 
 ## 表达式求值
 
