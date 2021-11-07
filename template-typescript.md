@@ -3,15 +3,16 @@
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++
 
 - [算法模板（JS/TS 版本）](#算法模板jsts-版本)
-    - [输入](#输入)
-        - [`readline` 输入](#readline-输入)
-        - [`process.stdin.on` 输入](#processstdinon-输入)
-        - [fs 输入](#fs-输入)
-    - [常用函数缩写](#常用函数缩写)
-    - [快速幂](#快速幂)
-    - [邻接表](#邻接表)
-    - [快速幂](#快速幂-1)
-    - [并查集](#并查集)
+  - [输入](#输入)
+    - [`readline` 输入](#readline-输入)
+    - [`process.stdin.on` 输入](#processstdinon-输入)
+    - [fs 输入](#fs-输入)
+  - [常用函数缩写](#常用函数缩写)
+  - [快速幂](#快速幂)
+  - [邻接表](#邻接表)
+  - [快速幂](#快速幂-1)
+  - [并查集](#并查集)
+  - [拓扑排序](#拓扑排序)
 
 ## 输入
 
@@ -196,4 +197,29 @@ function merge (x: number, y: number) {
   const fx = get(x); const fy = get(y)
   fa[fx] = fy
 }
+```
+
+## 拓扑排序
+
+```ts
+// LeetCode 210. Course Schedule II
+function findOrder(n: number, p: number[][]): number[] {
+    const e = [...Array(n)].map(() => []), deg = Array(n).fill(0)
+    const ans = [], q = []
+    for (const [a, b] of p) {
+        e[b].push(a)
+        deg[a]++
+    }
+    for (let i = 0; i < n; i++) if (deg[i] === 0) q.push(i)
+    while (q.length) {
+        const x = q.shift()
+        ans.push(x)
+        for (const y of e[x]) {
+            if (--deg[y] === 0) {
+                q.push(y)
+            }
+        }
+    }
+    return ans.length === n ? ans : []
+};
 ```
