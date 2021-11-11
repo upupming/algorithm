@@ -120,6 +120,8 @@
 - 543. Diameter of Binary Tree
 - 687. Longest Univalue Path
 - 124. Binary Tree Maximum Path Sum
+- 2056. Number of Valid Move Combinations On Chessboard
+    - 非常恶心的一道暴力题，怎么做都能做出来，但是就是题意复杂
 
 ## 表达式求值
 
