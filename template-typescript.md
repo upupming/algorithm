@@ -16,7 +16,9 @@
 
 ## 输入
 
-JS 的输入输出是一个大坑，远不像 C++ 那么方便，[Node.js 环境](https://www.jianshu.com/p/70a04abd0823)下常用的有 `readline` 和 `process.stdin.on` 两种方法。[V8](https://codeforces.com/blog/entry/77741) 则是 `readline` 和 `print`。
+JS 的输入输出是一个和 C++ 完全不同，需要从思维上进行转变，相当于是拿到整体全部的输入之后再处理比较方便。
+
+[Node.js 环境](https://www.jianshu.com/p/70a04abd0823)下常用的有 `readline` 和 `process.stdin.on` 两种方法。[V8](https://codeforces.com/blog/entry/77741) 则是 `readline` 和 `print`。
 
 最大的缺点是，一行数据读进来之后，需要自己进行 `split` 并转换成自己想要的数据类型。代码写起来不够优雅。
 
