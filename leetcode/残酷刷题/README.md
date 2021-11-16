@@ -1,5 +1,31 @@
 # 残酷刷题群
 
+- [残酷刷题群](#残酷刷题群)
+    - [Problems](#problems)
+        - [前缀和](#前缀和)
+        - [排序](#排序)
+            - [Quick Select](#quick-select)
+        - [双指针](#双指针)
+        - [单调栈](#单调栈)
+        - [DP](#dp)
+            - [状态压缩](#状态压缩)
+            - [LIS](#lis)
+            - [背包](#背包)
+            - [subsequence 计数](#subsequence-计数)
+        - [并查集](#并查集)
+            - [时光倒流](#时光倒流)
+        - [回文串 (DP / Manacher)](#回文串-dp--manacher)
+        - [最短路](#最短路)
+        - [数学](#数学)
+            - [质数筛](#质数筛)
+        - [搜索](#搜索)
+            - [BFS](#bfs)
+            - [拓扑排序](#拓扑排序)
+            - [DFS](#dfs)
+        - [表达式求值](#表达式求值)
+        - [状态机](#状态机)
+    - [Links](#links)
+
 ## Problems
 
 ### 前缀和
@@ -98,13 +124,13 @@
     - 质数筛 + DP
 - 1998. GCD Sort of an Array
 
-## 搜索
+### 搜索
 
 - 2014. Longest Subsequence Repeated k Times
 - 1755. Closest Subsequence Sum
     - 双向搜索
 
-### BFS
+#### BFS
 
 - 2045. Second Minimum Time to Reach Destination
 - 1263. Minimum Moves to Move a Box to Their Target Location
@@ -115,7 +141,7 @@
 - 207. Course Schedule
 - 210. Course Schedule II
 
-### DFS
+#### DFS
 
 - 543. Diameter of Binary Tree
 - 687. Longest Univalue Path
@@ -123,11 +149,15 @@
 - 2056. Number of Valid Move Combinations On Chessboard
     - 非常恶心的一道暴力题，怎么做都能做出来，但是就是题意复杂
 
-## 表达式求值
+### 表达式求值
 
 - 227. Basic Calculator II
 - 241. Different Ways to Add Parentheses
 - 679. 24 Game
+
+### 状态机
+
+- 2055. Plates Between Candles
 
 ## Links
 
