@@ -12,6 +12,7 @@
             - [LIS](#lis)
             - [背包](#背包)
             - [subsequence 计数](#subsequence-计数)
+            - [二分查找](#二分查找)
         - [并查集](#并查集)
             - [时光倒流](#时光倒流)
         - [回文串 (DP / Manacher)](#回文串-dp--manacher)
@@ -94,6 +95,10 @@
 - 940. Distinct Subsequences II
 - 1987. Number of Unique Good Subsequences
 - 1994. The Number of Good Subsets
+
+#### 二分查找
+
+- 2054. Two Best Non-Overlapping Events
 
 ### 并查集
 
