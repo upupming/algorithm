@@ -99,6 +99,7 @@
 #### 二分查找
 
 - 2054. Two Best Non-Overlapping Events
+- 1235. Maximum Profit in Job Scheduling
 
 ### 并查集
 
