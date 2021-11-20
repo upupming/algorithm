@@ -100,6 +100,7 @@
 
 - 2054. Two Best Non-Overlapping Events
 - 1235. Maximum Profit in Job Scheduling
+- 1751. Maximum Number of Events That Can Be Attended II
 
 ### 并查集
 
