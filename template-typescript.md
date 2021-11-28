@@ -126,14 +126,17 @@ const log = console.log.bind(console)
 ## 快速幂
 
 ```ts
-function pow (a: number, b: number, p: number) {
-  let ans = 1 % p
+// 有一个坑的点是 (1e9+7)^2 在 JS 里面会溢出，会在 ans * a 就产生溢出
+// 遇到 1e9+7 的题目最好全部用 BigInt，避免产生溢出问题
+function pow (a1: number, b1: number, p1: number) {
+  let a = BigInt(a1); let b = BigInt(b1); const p = BigInt(p1)
+  let ans = 1n % p
   while (b) {
-    if (b & 1) ans = Number(BigInt(ans) * BigInt(a) % BigInt(p))
-    a = Number(BigInt(a) * BigInt(a) % BigInt(p))
-    b >>= 1
+    if (b & 1n) ans = ans * a % p
+    a = a * a % p
+    b >>= 1n
   }
-  return ans
+  return Number(ans)
 }
 
 function pow (a: bigint, b: bigint, p: bigint) {
