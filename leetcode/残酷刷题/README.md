@@ -25,6 +25,7 @@
             - [DFS](#dfs)
         - [表达式求值](#表达式求值)
         - [状态机](#状态机)
+        - [链表](#链表)
     - [Links](#links)
 
 ## Problems
@@ -165,6 +166,10 @@
 ### 状态机
 
 - 2055. Plates Between Candles
+
+### 链表
+
+- 206. Reverse Linked List
 
 ## Links
 

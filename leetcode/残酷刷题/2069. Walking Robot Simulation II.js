@@ -58,3 +58,6 @@ Robot.prototype.getDir = function () {
 * var param_2 = obj.getPos()
 * var param_3 = obj.getDir()
 */
+const r = new Robot(1, 2)
+
+r.getDir()
