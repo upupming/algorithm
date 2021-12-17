@@ -69,6 +69,7 @@
 - 1478. Allocate Mailboxes
     - DP + 货仓选址
 - 1277. Count Square Submatrices with All Ones
+- 2088. Count Fertile Pyramids in a Land
 
 #### 状态压缩
 

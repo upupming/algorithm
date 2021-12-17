@@ -14,6 +14,7 @@
 - Google KickStart [kick-start](kick-start)
 - LeetCode [leetcode](leetcode)
     - [残酷刷题](leetcode/残酷刷题)
+        - 想加入残酷刷题群的朋友可以联系我，[残酷刷题群2020年会总结](https://zhuanlan.zhihu.com/p/341323903)、[群规链接](http://board.cruelcoding.com/rules.html)
 - 伪代码 [pseudoCode](pseudoCode)
 - 其他的都是之前刷 PAT 时候的题目
 
