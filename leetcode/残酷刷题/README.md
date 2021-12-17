@@ -108,6 +108,8 @@
 ### 并查集
 
 - 1627. Graph Connectivity With Threshold
+- 2092. Find All People With Secret
+    - 并查集，宽搜都可以做
 
 #### 时光倒流
 
