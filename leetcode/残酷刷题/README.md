@@ -26,6 +26,7 @@
         - [表达式求值](#表达式求值)
         - [状态机](#状态机)
         - [链表](#链表)
+        - [欧拉路径](#欧拉路径)
     - [Links](#links)
 
 ## Problems
@@ -178,6 +179,10 @@
 - 25. Reverse Nodes in k-Group
 - 2074. Reverse Nodes in Even Length Groups
 - 143. Reorder List
+
+### 欧拉路径
+
+- 332. Reconstruct Itinerary
 
 ## Links
 

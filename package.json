@@ -10,12 +10,12 @@
     "@types/lodash": "4.14.169",
     "@types/node": "15.0.3",
     "@typescript-eslint/eslint-plugin": "4.1.0",
+    "@typescript-eslint/parser": "^4.0.0",
     "eslint": "7.24.0",
     "eslint-config-standard-with-typescript": "20.0.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
-    "eslint-plugin-standard": "5.0.0",
     "ts-node": "10.1.0",
     "typescript": "4.2.4"
   },
