@@ -183,6 +183,7 @@
 ### 欧拉路径
 
 - 332. Reconstruct Itinerary
+- 2097. Valid Arrangement of Pairs
 
 ## Links
 
