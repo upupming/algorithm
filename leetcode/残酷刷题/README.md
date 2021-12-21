@@ -27,6 +27,7 @@
         - [状态机](#状态机)
         - [链表](#链表)
         - [欧拉路径](#欧拉路径)
+        - [LCA (最近公共祖先)](#lca-最近公共祖先)
     - [Links](#links)
 
 ## Problems
@@ -184,6 +185,12 @@
 
 - 332. Reconstruct Itinerary
 - 2097. Valid Arrangement of Pairs
+
+### LCA (最近公共祖先)
+
+- 236. Lowest Common Ancestor of a Binary Tree
+- 1123. Lowest Common Ancestor of Deepest Leaves
+- 2096. Step-By-Step Directions From a Binary Tree Node to Another
 
 ## Links
 
