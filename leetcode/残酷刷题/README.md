@@ -6,6 +6,7 @@
         - [排序](#排序)
             - [Quick Select](#quick-select)
         - [双指针](#双指针)
+        - [堆](#堆)
         - [单调栈](#单调栈)
         - [DP](#dp)
             - [状态压缩](#状态压缩)
@@ -28,6 +29,7 @@
         - [链表](#链表)
         - [欧拉路径](#欧拉路径)
         - [LCA (最近公共祖先)](#lca-最近公共祖先)
+        - [基环树](#基环树)
     - [Links](#links)
 
 ## Problems
@@ -52,6 +54,10 @@
 - 2024. Maximize the Confusion of an Exam
 - 424. Longest Repeating Character Replacement
 - 930. Binary Subarrays With Sum
+
+### 堆
+
+- 2102. Sequentially Ordinal Rank Tracker
 
 ### 单调栈
 
@@ -191,6 +197,10 @@
 - 236. Lowest Common Ancestor of a Binary Tree
 - 1123. Lowest Common Ancestor of Deepest Leaves
 - 2096. Step-By-Step Directions From a Binary Tree Node to Another
+
+### 基环树
+
+- 2127. Maximum Employees to Be Invited to a Meeting
 
 ## Links
 
