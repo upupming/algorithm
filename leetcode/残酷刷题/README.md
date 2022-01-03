@@ -54,6 +54,7 @@
 - 2024. Maximize the Confusion of an Exam
 - 424. Longest Repeating Character Replacement
 - 930. Binary Subarrays With Sum
+- 2106. Maximum Fruits Harvested After at Most K Steps
 
 ### 堆
 
@@ -160,6 +161,7 @@
 
 - 207. Course Schedule
 - 210. Course Schedule II
+- 2115. Find All Possible Recipes from Given Supplies
 
 #### DFS
 
