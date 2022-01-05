@@ -30,6 +30,7 @@
         - [欧拉路径](#欧拉路径)
         - [LCA (最近公共祖先)](#lca-最近公共祖先)
         - [基环树](#基环树)
+        - [字符串哈希](#字符串哈希)
     - [Links](#links)
 
 ## Problems
@@ -203,6 +204,12 @@
 ### 基环树
 
 - 2127. Maximum Employees to Be Invited to a Meeting
+
+### 字符串哈希
+
+- 1044. Longest Duplicate Substring
+    - 数据比较强，需要开较大的 Q 取模，只能用 BigInt
+- 214. Shortest Palindrome
 
 ## Links
 

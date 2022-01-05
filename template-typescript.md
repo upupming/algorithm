@@ -13,6 +13,7 @@
   - [快速幂](#快速幂-1)
   - [并查集](#并查集)
   - [拓扑排序](#拓扑排序)
+  - [字符串哈希](#字符串哈希)
 
 ## 输入
 
@@ -228,3 +229,23 @@ function findOrder(n: number, p: number[][]): number[] {
     return ans.length === n ? ans : []
 };
 ```
+
+## 字符串哈希
+
+```js
+// 最好以 1 为开始下标，比较好处理 p 数组
+const n = s.length
+s = ' ' + s
+
+const P = 131n
+const Q = 1n << 64n
+const f = [0n]; const p = [1n]
+for (let i = 1; i <= n; i++) {
+  f[i] = (f[i - 1] * P % Q + (BigInt(s[i].charCodeAt(0) - 'a'.charCodeAt(0)))) % Q
+  p[i] = p[i - 1] * P % Q
+}
+const hash = (i, j) => {
+  // 乘完之后的取模非常重要，漏掉就会 WA（出现较小负数导致 + 一个 Q 不够）
+  return (f[j] - f[i - 1] * p[j - i + 1] % Q + Q) % Q
+}
+``
