@@ -13,8 +13,13 @@
 - 我的对拍程序 [matcher.cpp](matcher.cpp)
 - Google KickStart [kick-start](kick-start)
 - LeetCode [leetcode](leetcode)
-    - [残酷刷题](leetcode/残酷刷题)
-        - 想加入残酷刷题群的朋友可以联系我，[残酷刷题群2020年会总结](https://zhuanlan.zhihu.com/p/341323903)、[群规链接](http://board.cruelcoding.com/rules.html)
+    - [残酷刷题](leetcode/残酷刷题), [主页](http://cruelcoding.com/)
+        - 想加入残酷刷题群的朋友可以联系我，
+        - [残酷刷题群2021年会](https://www.bilibili.com/video/BV1SL411V7Sd)
+        - [残酷刷题群2020年会总结](https://zhuanlan.zhihu.com/p/341323903)
+        - [群规链接](http://board.cruelcoding.com/rules.html)
+    - lcpredictor: https://lcpredictor.herokuapp.com/
+    - clist.by: https://clist.by/account/upupming/resource/leetcode.com/
 - 伪代码 [pseudoCode](pseudoCode)
 - 其他的都是之前刷 PAT 时候的题目
 
