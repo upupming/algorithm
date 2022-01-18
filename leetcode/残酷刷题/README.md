@@ -31,6 +31,7 @@
         - [LCA (最近公共祖先)](#lca-最近公共祖先)
         - [基环树](#基环树)
         - [字符串哈希](#字符串哈希)
+        - [括号匹配](#括号匹配)
     - [Links](#links)
 
 ## Problems
@@ -38,10 +39,13 @@
 ### 前缀和
 
 - 2025. Maximum Number of Ways to Partition an Array
+- 1685. Sum of Absolute Differences in a Sorted Array
+- 2121. Intervals Between Identical Elements
 
 ### 排序
 
 - 1996. The Number of Weak Characters in the Game
+- 2007. Find Original Array From Doubled Array
 
 #### Quick Select
 
@@ -210,6 +214,11 @@
 - 1044. Longest Duplicate Substring
     - 数据比较强，需要开较大的 Q 取模，只能用 BigInt
 - 214. Shortest Palindrome
+
+### 括号匹配
+
+- 2116. Check if a Parentheses String Can Be Valid
+- 32. Longest Valid Parentheses
 
 ## Links
 
