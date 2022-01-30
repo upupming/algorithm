@@ -3,17 +3,17 @@
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++
 
 - [算法模板（JS/TS 版本）](#算法模板jsts-版本)
-  - [输入](#输入)
-    - [`readline` 输入](#readline-输入)
-    - [`process.stdin.on` 输入](#processstdinon-输入)
-    - [fs 输入](#fs-输入)
-  - [常用函数缩写](#常用函数缩写)
-  - [快速幂](#快速幂)
-  - [邻接表](#邻接表)
-  - [快速幂](#快速幂-1)
-  - [并查集](#并查集)
-  - [拓扑排序](#拓扑排序)
-  - [字符串哈希](#字符串哈希)
+    - [输入](#输入)
+        - [`readline` 输入](#readline-输入)
+        - [`process.stdin.on` 输入](#processstdinon-输入)
+        - [fs 输入](#fs-输入)
+    - [常用函数缩写](#常用函数缩写)
+    - [快速幂](#快速幂)
+    - [邻接表](#邻接表)
+    - [快速幂](#快速幂-1)
+    - [并查集](#并查集)
+    - [拓扑排序](#拓扑排序)
+    - [字符串哈希](#字符串哈希)
 
 ## 输入
 
@@ -205,6 +205,18 @@ function merge (x: number, y: number) {
 }
 ```
 
+```js
+const fa = [...Array(n)].map((_, idx) => idx)
+function get (x) {
+  if (x === fa[x]) return x
+  return fa[x] = get(fa[x])
+}
+function merge (x, y) {
+  const fx = get(x); const fy = get(y)
+  fa[fx] = fy
+}
+```
+
 ## 拓扑排序
 
 ```ts
@@ -248,4 +260,4 @@ const hash = (i, j) => {
   // 乘完之后的取模非常重要，漏掉就会 WA（出现较小负数导致 + 一个 Q 不够）
   return (f[j] - f[i - 1] * p[j - i + 1] % Q + Q) % Q
 }
-``
+```

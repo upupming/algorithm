@@ -126,6 +126,7 @@
 - 1627. Graph Connectivity With Threshold
 - 2092. Find All People With Secret
     - 并查集，宽搜都可以做
+- 5995. Groups of Strings
 
 #### 时光倒流
 
@@ -218,6 +219,7 @@
 - 1044. Longest Duplicate Substring
     - 数据比较强，需要开较大的 Q 取模，只能用 BigInt
 - 214. Shortest Palindrome
+- 5994. Find Substring With Given Hash Value
 
 ### 括号匹配
 
