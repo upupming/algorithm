@@ -24,6 +24,7 @@
             - [BFS](#bfs)
             - [拓扑排序](#拓扑排序)
             - [DFS](#dfs)
+            - [位运算枚举](#位运算枚举)
         - [表达式求值](#表达式求值)
         - [状态机](#状态机)
         - [链表](#链表)
@@ -86,6 +87,8 @@
     - DP + 货仓选址
 - 1277. Count Square Submatrices with All Ones
 - 2088. Count Fertile Pyramids in a Land
+- 1473. Paint House III
+    - 线性 DP
 
 #### 状态压缩
 
@@ -180,6 +183,10 @@
 - 124. Binary Tree Maximum Path Sum
 - 2056. Number of Valid Move Combinations On Chessboard
     - 非常恶心的一道暴力题，怎么做都能做出来，但是就是题意复杂
+
+#### 位运算枚举
+
+- 1774. Closest Dessert Cost
 
 ### 表达式求值
 
