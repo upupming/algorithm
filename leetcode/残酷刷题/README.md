@@ -67,6 +67,7 @@
 ### 堆
 
 - 2102. Sequentially Ordinal Rank Tracker
+- 2163. Minimum Difference in Sums After Removal of Elements
 
 ### 单调栈
 
