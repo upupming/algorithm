@@ -9,6 +9,7 @@
         - [堆](#堆)
         - [单调栈](#单调栈)
         - [DP](#dp)
+            - [二分图](#二分图)
             - [状态压缩](#状态压缩)
             - [LIS](#lis)
             - [背包](#背包)
@@ -90,6 +91,10 @@
 - 2088. Count Fertile Pyramids in a Land
 - 1473. Paint House III
     - 线性 DP
+
+#### 二分图
+
+- 1595. Minimum Cost to Connect Two Groups of Points
 
 #### 状态压缩
 
