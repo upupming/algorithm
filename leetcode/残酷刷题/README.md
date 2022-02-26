@@ -34,6 +34,7 @@
         - [基环树](#基环树)
         - [字符串哈希](#字符串哈希)
         - [括号匹配](#括号匹配)
+        - [分治 (Divide and Conquer)](#分治-divide-and-conquer)
     - [Links](#links)
 
 ## Problems
@@ -238,6 +239,11 @@
 
 - 2116. Check if a Parentheses String Can Be Valid
 - 32. Longest Valid Parentheses
+
+### 分治 (Divide and Conquer)
+
+- 315. Count of Smaller Numbers After Self
+- 2179. Count Good Triplets in an Array
 
 ## Links
 
