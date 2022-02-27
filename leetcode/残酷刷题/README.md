@@ -21,6 +21,7 @@
         - [最短路](#最短路)
         - [数学](#数学)
             - [质数筛](#质数筛)
+            - [公约数](#公约数)
         - [搜索](#搜索)
             - [BFS](#bfs)
             - [拓扑排序](#拓扑排序)
@@ -162,6 +163,10 @@
 - 952. Largest Component Size by Common Factor
     - 质数筛 + DP
 - 1998. GCD Sort of an Array
+
+#### 公约数
+
+- 2183. Count Array Pairs Divisible by K
 
 ### 搜索
 
