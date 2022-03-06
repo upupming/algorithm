@@ -76,6 +76,7 @@
 
 - 316. Remove Duplicate Letters
 - 402. Remove K Digits
+- 42. Trapping Rain Water
 
 ### DP
 
@@ -93,6 +94,8 @@
 - 2088. Count Fertile Pyramids in a Land
 - 1473. Paint House III
     - 线性 DP
+- 1638. Count Substrings That Differ by One Character
+- 2167. Minimum Time to Remove All Cars Containing Illegal Goods
 
 #### 二分图
 
