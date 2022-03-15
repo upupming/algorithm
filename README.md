@@ -20,6 +20,7 @@
         - [群规链接](http://board.cruelcoding.com/rules.html)
     - lcpredictor: https://lcpredictor.herokuapp.com/
     - clist.by: https://clist.by/account/upupming/resource/leetcode.com/
+- [校招笔试 2022-online-assessments](2022-online-assessments/README.md)
 - 伪代码 [pseudoCode](pseudoCode)
 - 其他的都是之前刷 PAT 时候的题目
 
