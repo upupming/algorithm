@@ -73,6 +73,7 @@
 - 2163. Minimum Difference in Sums After Removal of Elements
 - 1368. Minimum Cost to Make at Least One Valid Path in a Grid: 搜索
 - 1514. Path with Maximum Probability
+- 882. Reachable Nodes In Subdivided Graph: dijkstra
 
 ### 单调栈
 
