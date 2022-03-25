@@ -74,6 +74,7 @@
 - 1368. Minimum Cost to Make at Least One Valid Path in a Grid: 搜索
 - 1514. Path with Maximum Probability
 - 882. Reachable Nodes In Subdivided Graph: dijkstra
+- 787. Cheapest Flights Within K Stops: 二维的 dijkstra，有点类似 dp 的思想
 
 ### 单调栈
 
