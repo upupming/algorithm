@@ -247,6 +247,7 @@
     - 数据比较强，需要开较大的 Q 取模，只能用 BigInt
 - 214. Shortest Palindrome
 - 5994. Find Substring With Given Hash Value
+- 1923. Longest Common Subpath
 
 ### 括号匹配
 
