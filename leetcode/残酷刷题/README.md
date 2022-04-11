@@ -248,6 +248,8 @@
 - 214. Shortest Palindrome
 - 5994. Find Substring With Given Hash Value
 - 1923. Longest Common Subpath
+- 2223. Sum of Scores of Built Strings
+    - 双哈希，可以把 mod 调小一点，不用 BigInt，JS 的 BigInt 效率还是很慢，很容易超时
 
 ### 括号匹配
 
