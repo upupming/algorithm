@@ -139,6 +139,7 @@
 - 2054. Two Best Non-Overlapping Events
 - 1235. Maximum Profit in Job Scheduling
 - 1751. Maximum Number of Events That Can Be Attended II
+- 1300. Sum of Mutated Array Closest to Target
 
 ### 并查集
 
