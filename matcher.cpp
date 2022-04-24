@@ -5,8 +5,8 @@
 #include <ctime>
 #include <iostream>
 
-const std::string bf = "kick-start/2021/RoundE/a.naive.cpp";
-const std::string algo = "kick-start/2021/RoundE/a.cpp";
+const std::string bf = "kick-start/2022/RoundB/b-naive.cpp";
+const std::string algo = "kick-start/2022/RoundB/b.cpp";
 const std::string randomGenerator = "random.cpp";
 
 /*
@@ -28,20 +28,20 @@ int mySystem(const char* command) {
 
 int main() {
     mySystem(("g++ -std=c++17 -o random.out " + randomGenerator).c_str());
-    // mySystem(
-    // ("g++ -std=c++17 -o bf.out " + bf).c_str());
-    // mySystem(
-    //     ("g++ -std=c++17 -o algo.out " + algo).c_str());
+    mySystem(
+        ("g++ -std=c++17 -o bf.out " + bf).c_str());
+    mySystem(
+        ("g++ -std=c++17 -o algo.out " + algo).c_str());
     for (int T = 1;; T++) {
         // 生成随机数据
         mySystem("./random.out > data.in");
         // 记录运行的 CPU 时间
         double st = clock();
         // 暴力解法输出正确答案
-        mySystem("node kick-start/2021/RoundH/c.js < data.in > data.ans");
+        mySystem("./bf.out < data.in > data.ans");
         double ed = clock();
         // 优化解法输出待检查答案
-        mySystem("node kick-start/2021/RoundH/d.js < data.in > data.out");
+        mySystem("./algo.out < data.in > data.out");
 
         if (mySystem("diff data.out data.ans")) {
             puts("\033[1;31mWrong Answer\033[0m");

@@ -23,8 +23,7 @@ int main() {
     cout << n << endl;
     for (int i = 1; i <= n; i++) {
         {
-            cout << 10 << endl
-                 << getRandStr(10);
+            cout << getRandStr(5);
             cout << endl;
         }
     }
