@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .normal {
+        width: 300px;
+        height: 300px;
+        position: relative;
+      }
+      .normal > img {
+        width: 100%;
+        height: 100%;
+      }
+      .lay {
+        width: 150px;
+        height: 150px;
+        background: orange;
+        opacity: 0.5;
+        position: absolute;
+        left: 0;
+        top: 0;
+        cursor: move;
+        display: none;
+      }
+      .big {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        left: 350px;
+        top: 0px;
+        overflow: hidden;
+        display: none;
+      }
+      .big > img {
+        width: 600px;
+        height: 600px;
+        position: absolute;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <section id="magnifier"></section>
+
+    <script type="text/javascript">
+      var magnifier = {
+        init(param) {
+          const el = param.el;
+          const src = param.src;
+          if (!el || !src) return;
+          this.createElement(el, src);
+        },
+        createElement(el, src) {
+          const _this = this;
+          const normalDiv = document.createElement('div');
+          normalDiv.className = 'normal';
+          const normalImg = document.createElement('img');
+          normalImg.src = src.normal;
+          const normalSpan = document.createElement('span');
+          normalSpan.className = 'lay';
+          normalDiv.appendChild(normalImg);
+          normalDiv.appendChild(normalSpan);
+
+          const bigDiv = document.createElement('div');
+          bigDiv.className = 'big';
+          const bigImg = document.createElement('img');
+          bigImg.src = src.big;
+          bigDiv.appendChild(bigImg);
+
+          el.appendChild(normalDiv);
+          el.appendChild(bigDiv);
+
+          normalDiv.addEventListener('mouseover', () => {
+            // TODO: 放大镜、被放大的图片都显示，渲染为块级元素
+            normalSpan.style.display = 'block';
+            bigDiv.style.display = 'block';
+          });
+          normalDiv.addEventListener('mouseout', () => {
+            // TODO: 放大镜、被放大的图片都隐藏，不渲染
+            normalSpan.style.display = 'none';
+            bigDiv.style.display = 'none';
+          });
+
+          normalDiv.addEventListener('mousemove', _moveHandler);
+
+          function _moveHandler(event) {
+            event = event || window.event;
+            _this.moveHandler(event, normalDiv, normalSpan, bigImg);
+          }
+        },
+        moveHandler(event, normalDiv, normalSpan, bigImg) {
+          // tip: 该函数处理放大镜、被放大的图片的显示区域，x、y分别为鼠标在该模块中的位置坐标
+
+          const scale = 2;
+          let x = event.clientX - normalSpan.offsetWidth / 2;
+          let y = event.clientY - normalSpan.offsetHeight / 2;
+          // TODO: 判断临界值，重新设置放大镜、被放大的图片的位置
+          let xMin = 0;
+          let yMin = 0;
+          let xMax = normalDiv.offsetWidth - normalSpan.offsetWidth;
+          let yMax = normalDiv.offsetWidth - normalSpan.offsetWidth;
+          if (x < xMin) {
+            x = xMin;
+          } else if (x > xMax) {
+            x = xMax;
+          }
+          if (y < yMin) {
+            y = yMin;
+          } else if (y > yMax) {
+            y = yMax;
+          }
+          // console.log(x, y);
+          // console.log(normalSpan);
+          normalSpan.style.left = x + 'px';
+          normalSpan.style.top = y + 'px';
+          bigImg.style.left = -x * 2 + 'px';
+          bigImg.style.top = -y * 2 + 'px';
+        },
+      };
+      magnifier.init({
+        // TODO: 请获取id=magnifier的节点
+
+        el: document.getElementById('magnifier'),
+        src: {
+          normal:
+            'https://uploadfiles.nowcoder.com/images/20211201/920662346_1638327818015/FE8B1A979ADF6E3C2C114AF3F9CA693C',
+          big: 'https://uploadfiles.nowcoder.com/images/20211201/920662346_1638327818015/FE8B1A979ADF6E3C2C114AF3F9CA693C',
+        },
+      });
+    </script>
+  </body>
+</html>
