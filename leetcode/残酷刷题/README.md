@@ -141,6 +141,8 @@
 - 1751. Maximum Number of Events That Can Be Attended II
 - 1300. Sum of Mutated Array Closest to Target
 - 1802. Maximum Value at a Given Index in a Bounded Array
+- 1201. Ugly Number III.js
+- 二分 + 容斥原理 + lcm
 
 ### 并查集
 
