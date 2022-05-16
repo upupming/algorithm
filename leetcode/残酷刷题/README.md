@@ -48,6 +48,7 @@
 - 2121. Intervals Between Identical Elements
 - 850. Rectangle Area II, 二维差分
 - 2132. Stamping the Grid
+- 1109. Corporate Flight Bookings: 差分
 
 ### 排序
 
