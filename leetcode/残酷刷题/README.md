@@ -50,6 +50,7 @@
 - 2132. Stamping the Grid
 - 1109. Corporate Flight Bookings: 差分
 - 2251. Number of Flowers in Full Bloom: 差分
+- 1674. Minimum Moves to Make Array Complementary
 
 ### 排序
 
