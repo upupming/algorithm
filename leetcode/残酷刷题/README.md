@@ -85,6 +85,7 @@
 - 316. Remove Duplicate Letters
 - 402. Remove K Digits
 - 42. Trapping Rain Water
+- 1856. Maximum Subarray Min-Product
 
 ### DP
 
