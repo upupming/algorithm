@@ -70,6 +70,7 @@
 - 424. Longest Repeating Character Replacement
 - 930. Binary Subarrays With Sum
 - 2106. Maximum Fruits Harvested After at Most K Steps
+- 1498. Number of Subsequences That Satisfy the Given Sum Condition
 
 ### 堆
 
