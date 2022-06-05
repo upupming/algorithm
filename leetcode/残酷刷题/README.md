@@ -37,6 +37,7 @@
         - [括号匹配](#括号匹配)
         - [分治 (Divide and Conquer)](#分治-divide-and-conquer)
         - [扫描线 (Sweep Line)](#扫描线-sweep-line)
+    - [线段树](#线段树)
     - [Links](#links)
 
 ## Problems
@@ -276,6 +277,10 @@
 
 - 56. Merge Intervals
 - 218. The Skyline Problem
+
+## 线段树
+
+- 715. Range Module
 
 ## Links
 

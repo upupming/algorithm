@@ -115,12 +115,13 @@
   "cSpell.words": [
     "ACWing",
     "Kruskal",
-    "Manacher",
-    "SPFA",
-    "Treap",
     "lowbit",
+    "Manacher",
+    "pushdown",
     "readline",
-    "struct"
+    "SPFA",
+    "struct",
+    "Treap"
   ],
   // 好多地方只支持 4 的 indent，例如知乎和 AcWing
   "markdownlint.config": {
@@ -138,23 +139,23 @@
   // prettier is included by eslint
   "[javascript]": {
     "editor.formatOnSave": false,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "[javascriptreact]": {
     "editor.formatOnSave": false,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "[typescript]": {
     "editor.formatOnSave": false,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "[typescriptreact]": {
     "editor.formatOnSave": false,
-    "editor.tabSize": 2,
+    "editor.tabSize": 2
   },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
   "eslint.packageManager": "yarn",
-  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.tsdk": "node_modules\\typescript\\lib"
 }
