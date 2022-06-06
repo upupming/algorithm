@@ -61,3 +61,7 @@
 - [栗子的 KickStart 题解](https://github.com/lzy960601/Google_Coding_Competitions)
 - [Range Minimum Query - TopCoder](https://www.topcoder.com/community/competitive-programming/tutorials/range-minimum-query-and-lowest-common-ancestor/)
 - [Pecco 的算法学习笔记](https://www.zhihu.com/column/c_1182444932760125440)
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/upupming/algorithm.svg)](https://starchart.cc/upupming/algorithm)
