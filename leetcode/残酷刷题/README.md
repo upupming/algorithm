@@ -281,6 +281,7 @@
 ## 线段树
 
 - 715. Range Module
+- 2213. Longest Substring of One Repeating Character
 
 ## Links
 
