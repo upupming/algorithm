@@ -3,20 +3,21 @@
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++
 
 - [算法模板（JS/TS 版本）](#算法模板jsts-版本)
-  - [输入](#输入)
-    - [`readline` 输入](#readline-输入)
-    - [`process.stdin.on` 输入](#processstdinon-输入)
-    - [fs 输入](#fs-输入)
-  - [常用函数缩写](#常用函数缩写)
-  - [快速幂](#快速幂)
-  - [邻接表](#邻接表)
-  - [快速幂](#快速幂-1)
-  - [并查集](#并查集)
-  - [拓扑排序](#拓扑排序)
-  - [字符串哈希](#字符串哈希)
-  - [线段树](#线段树)
-    - [单点修改](#单点修改)
-    - [区间修改](#区间修改)
+    - [输入](#输入)
+        - [`readline` 输入](#readline-输入)
+        - [`process.stdin.on` 输入](#processstdinon-输入)
+        - [fs 输入](#fs-输入)
+    - [常用函数缩写](#常用函数缩写)
+    - [快速幂](#快速幂)
+    - [邻接表](#邻接表)
+    - [快速幂](#快速幂-1)
+    - [并查集](#并查集)
+    - [拓扑排序](#拓扑排序)
+    - [字符串哈希](#字符串哈希)
+    - [线段树](#线段树)
+        - [单点修改](#单点修改)
+        - [区间修改](#区间修改)
+        - [同时支持单点修改和区间修改](#同时支持单点修改和区间修改)
 
 ## 输入
 
@@ -359,7 +360,86 @@ class SegmentTree {
 
 ```
 
+> https://leetcode.com/problems/booking-concert-tickets-in-groups/
+
+```ts
+class Node {
+  start: number
+  end: number
+  max: number
+  sum: number
+  left: null | Node = null
+  right: null | Node = null
+  constructor (start: number, end: number) {
+    this.start = start
+    this.end = end
+    this.max = 0
+    this.sum = 0
+  }
+}
+
+// https://www.acwing.com/activity/content/code/content/167900/
+class SegmentTree {
+  root: Node
+  constructor (start: number, end: number) {
+    this.root = new Node(start, end)
+  }
+
+  modify (pos: number, val: number) {
+    this.modifyNode(this.root, pos, val)
+  }
+
+  modifyNode (node: Node, pos: number, val: number) {
+    if (node.start === pos && node.end === pos) {
+      node.max = node.sum = val
+    } else {
+      this.pushdown(node)
+      if (pos <= node.left!.end) this.modifyNode(node.left!, pos, val)
+      if (pos >= node.right!.start) this.modifyNode(node.right!, pos, val)
+      this.pushup(node)
+    }
+  }
+
+  // 这里 pushdown 的作用只是动态创建新节点
+  pushdown (node: Node) {
+    const mid = node.start + node.end >> 1
+    node.left ??= new Node(node.start, mid)
+    node.right ??= new Node(mid + 1, node.end)
+  }
+
+  pushup (node: Node) {
+    node.max = Math.max(node.left!.max, node.right!.max)
+    node.sum = node.left!.sum + node.right!.sum
+  }
+
+  query (start: number, end: number) {
+    return this.queryNode(this.root, start, end)
+  }
+
+  queryNode (node: Node, start: number, end: number) {
+    if (start <= node.start && end >= node.end) return [node.max, node.sum]
+
+    this.pushdown(node)
+    let max = 0; let sum = 0
+    if (start <= node.left!.end) {
+      const [_m, _s] = this.queryNode(node.left!, start, end)
+      max = Math.max(max, _m)
+      sum += _s
+    }
+    if (end >= node.right!.start) {
+      const [_m, _s] = this.queryNode(node.right!, start, end)
+      max = Math.max(max, _m)
+      sum += _s
+    }
+    return [max, sum]
+  }
+}
+
+```
+
 ### 区间修改
+
+> https://leetcode.com/problems/range-module/
 
 ```ts
 enum Tracked {
@@ -435,6 +515,115 @@ class SegmentTree {
     if (start <= node.left!.end) sum += this.queryNode(node.left!, start, end)
     if (end >= node.right!.start) sum += this.queryNode(node.right!, start, end)
     return sum
+  }
+}
+
+```
+
+### 同时支持单点修改和区间修改
+
+写法比较复杂，如果题目只需要单点修改就行了，可以对单点修改拓展，忽略区间修改方法。
+
+> https://leetcode.com/problems/booking-concert-tickets-in-groups
+
+```ts
+class Node {
+  start: number
+  end: number
+  max: number = 0
+  sum: number = 0
+  lazy: number | null = null
+  left: null | Node = null
+  right: null | Node = null
+  constructor (start: number, end: number) {
+    this.start = start
+    this.end = end
+  }
+}
+
+// https://www.acwing.com/activity/content/code/content/167900/
+class SegmentTree {
+  root: Node
+  constructor (start: number, end: number) {
+    this.root = new Node(start, end)
+  }
+
+  modify (pos: number, val: number) {
+    this.modifyNode(this.root, pos, val)
+  }
+
+  modifyNode (node: Node, pos: number, val: number) {
+    if (node.start === pos && node.end === pos) {
+      node.max = node.sum = val
+    } else {
+      this.pushdown(node)
+      if (pos <= node.left!.end) this.modifyNode(node.left!, pos, val)
+      if (pos >= node.right!.start) this.modifyNode(node.right!, pos, val)
+      this.pushup(node)
+    }
+  }
+
+  // 使用 modify 和 modifyRange 是等价的，modifyRange 更加通用
+  modifyRange (start: number, end: number, val: number) {
+    this.modifyNodeRange(this.root, start, end, val)
+  }
+
+  modifyNodeRange (node: Node, start: number, end: number, val: number) {
+    if (start <= node.start && end >= node.end) {
+      node.sum = val * (end - start + 1)
+      node.max = val
+      node.lazy = val
+    } else {
+      this.pushdown(node)
+      if (start <= node.left!.end) this.modifyNodeRange(node.left!, start, end, val)
+      if (end >= node.right!.start) this.modifyNodeRange(node.right!, start, end, val)
+      this.pushup(node)
+    }
+  }
+
+  // 这里 pushdown 同时保证了 left, right 一定存在
+  pushdown (node: Node) {
+    const mid = node.start + node.end >> 1
+    node.left ??= new Node(node.start, mid)
+    node.right ??= new Node(mid + 1, node.end)
+    if (node.lazy != null) {
+      node.left.lazy = node.lazy
+      node.left.max = node.lazy
+      node.left.sum = node.lazy * (node.left.end - node.left.start + 1)
+
+      node.right.lazy = node.lazy
+      node.right.max = node.lazy
+      node.right.sum = node.lazy * (node.right.end - node.right.start + 1)
+
+      node.lazy = null
+    }
+  }
+
+  pushup (node: Node) {
+    node.max = Math.max(node.left!.max, node.right!.max)
+    node.sum = node.left!.sum + node.right!.sum
+  }
+
+  query (start: number, end: number) {
+    return this.queryNode(this.root, start, end)
+  }
+
+  queryNode (node: Node, start: number, end: number) {
+    if (start <= node.start && end >= node.end) return [node.max, node.sum]
+
+    this.pushdown(node)
+    let max = 0; let sum = 0
+    if (start <= node.left!.end) {
+      const [_m, _s] = this.queryNode(node.left!, start, end)
+      max = Math.max(max, _m)
+      sum += _s
+    }
+    if (end >= node.right!.start) {
+      const [_m, _s] = this.queryNode(node.right!, start, end)
+      max = Math.max(max, _m)
+      sum += _s
+    }
+    return [max, sum]
   }
 }
 

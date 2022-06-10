@@ -282,6 +282,7 @@
 
 - 715. Range Module
 - 2213. Longest Substring of One Repeating Character
+- 2286. Booking Concert Tickets in Groups
 
 ## Links
 

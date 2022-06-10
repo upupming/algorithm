@@ -44,6 +44,7 @@
 - [yxc的B站](https://space.bilibili.com/7836741/)
 - [残酷刷题群排行榜](https://wisdompeak.github.io/lc-score-board/)、[残酷刷题群题目清单](https://docs.google.com/spreadsheets/d/1kBGyRsSdbGDu7DzjQcC-UkZjZERdrP8-_QyVGXHSrB8/edit)、[wisdompeak的B站](https://space.bilibili.com/695330558/)
     - [群友YoungForest的博客](https://youngforest.github.io/)
+    - [灵神的模板库 codeforces-go](https://github.com/EndlessCheng/codeforces-go)
     - [群友Bill0412的博客](https://kickstart.best/)
     - [OTTFF的B站](https://space.bilibili.com/97228279/)
     - [zerotrac的B站](https://space.bilibili.com/3203291/)
