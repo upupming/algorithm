@@ -570,7 +570,7 @@ class SegmentTree {
 
   modifyNodeRange (node: Node, start: number, end: number, val: number) {
     if (start <= node.start && end >= node.end) {
-      node.sum = val * (end - start + 1)
+      node.sum = val * (node.end - node.start + 1)
       node.max = val
       node.lazy = val
     } else {
@@ -609,21 +609,23 @@ class SegmentTree {
   }
 
   queryNode (node: Node, start: number, end: number) {
-    if (start <= node.start && end >= node.end) return [node.max, node.sum]
+    if (start <= node.start && end >= node.end) {
+      return { max: node.max, sum: node.sum }
+    }
 
     this.pushdown(node)
     let max = 0; let sum = 0
     if (start <= node.left!.end) {
-      const [_m, _s] = this.queryNode(node.left!, start, end)
+      const { max: _m, sum: _s } = this.queryNode(node.left!, start, end)
       max = Math.max(max, _m)
       sum += _s
     }
     if (end >= node.right!.start) {
-      const [_m, _s] = this.queryNode(node.right!, start, end)
+      const { max: _m, sum: _s } = this.queryNode(node.right!, start, end)
       max = Math.max(max, _m)
       sum += _s
     }
-    return [max, sum]
+    return { max, sum }
   }
 }
 
