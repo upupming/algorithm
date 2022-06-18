@@ -199,6 +199,7 @@
 - 2045. Second Minimum Time to Reach Destination
 - 1263. Minimum Moves to Move a Box to Their Target Location
     - Deque, 只有 0 和 1 两个边权
+- 2258. Escape the Spreading Fire
 
 #### 拓扑排序
 
