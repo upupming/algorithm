@@ -200,6 +200,9 @@
 - 1263. Minimum Moves to Move a Box to Their Target Location
     - Deque, 只有 0 和 1 两个边权
 - 2258. Escape the Spreading Fire
+- 2101. Detonate the Maximum Bombs
+- 1654. Minimum Jumps to Reach Home
+- 1617. Count Subtrees With Max Distance Between Cities
 
 #### 拓扑排序
 
