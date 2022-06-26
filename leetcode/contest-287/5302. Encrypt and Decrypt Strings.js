@@ -38,6 +38,10 @@ Encrypter.prototype.decrypt = function (word2) {
     for (let b = 0; b < d.length; b++) {
       const ch = d[b]
       const i = this.km[ch]
+      if (i == null) {
+        ok = false
+        break
+      }
       const p = this.values[i]
       for (let j = 0; j < p.length; j++) {
         if (p[j] === word2[idx]) idx++
