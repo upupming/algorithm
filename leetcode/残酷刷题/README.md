@@ -11,7 +11,7 @@
         - [DP](#dp)
             - [二分图](#二分图)
             - [状态压缩](#状态压缩)
-            - [LIS](#lis)
+            - [LIS (最长上升子序列)](#lis-最长上升子序列)
             - [背包](#背包)
             - [subsequence 计数](#subsequence-计数)
             - [二分查找](#二分查找)
@@ -123,7 +123,7 @@
 - 1284. Minimum Number of Flips to Convert Binary Matrix to Zero Matrix
 - 1452. People Whose List of Favorite Companies Is Not a Subset of Another List
 
-#### LIS
+#### LIS (最长上升子序列)
 
 - 300. Longest Increasing Subsequence
 - 1964. Find the Longest Valid Obstacle Course at Each Position
