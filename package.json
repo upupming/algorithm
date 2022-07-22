@@ -6,6 +6,9 @@
   "repository": "git@github.com:upupming/algorithm.git",
   "author": "<yimingli.cs@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "pdf": "mkdir -p build && pandoc --pdf-engine=xelatex template.md -o build/template.pdf && pandoc --pdf-engine=xelatex template-typescript.md -o build/template-typescript.pdf"
+  },
   "devDependencies": {
     "@types/lodash": "4.14.169",
     "@types/node": "15.0.3",

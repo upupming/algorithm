@@ -1,3 +1,15 @@
+---
+papersize: a4
+documentclass:
+    - ctexart
+geometry: margin=2cm
+header-includes:
+    - \usepackage{fvextra}
+    - \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+    - \usepackage{setspace}
+    - \singlespacing
+---
+
 # 算法模板（JS/TS 版本）
 
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++

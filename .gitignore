@@ -11,3 +11,4 @@ out
 *.pdf
 *_input.txt
 *_output.txt
+build
