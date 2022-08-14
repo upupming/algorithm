@@ -108,6 +108,10 @@
 - 1638. Count Substrings That Differ by One Character
 - 2167. Minimum Time to Remove All Cars Containing Illegal Goods
 - 2209. Minimum White Tiles After Covering With Carpets
+- 数位 DP
+    - 1012. Numbers With Repeated Digits
+    - 2376. Count Special Integers
+    - 600. Non-negative Integers without Consecutive Ones
 
 #### 二分图
 
