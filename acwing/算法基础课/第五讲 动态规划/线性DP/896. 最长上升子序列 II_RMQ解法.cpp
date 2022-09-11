@@ -1,6 +1,7 @@
 /*
 AcWing 3662 的简化版本
 时间复杂度 O(n log n)，不受数据大小影响
+https://www.acwing.com/solution/content/53104/
 */
 #include <algorithm>
 #include <cstring>

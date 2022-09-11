@@ -646,6 +646,34 @@ void add(int x, int y) {
 }
 ```
 
+```cpp
+// https://www.cnblogs.com/qdscwyy/p/9759220.html
+
+int lowbit(int x) {
+    return x & (-x);
+}
+void updata(int x, int k) {
+    while (x <= n) {
+        h[x] = k;
+        int low = lowbit(x);
+        for (int i = 1; i < low; i <<= 1)
+            h[x] = max(h[x], h[x - i]);
+        x += lowbit(x);
+    }
+}
+// 区间查询 [x, y] 的 max
+int query(int x, int y) {
+    int ans = 0;
+    while (y >= x)
+    {
+        ans = max(a[y], ans), y -= 1;
+        for (; y-lowbit(y) >= x; y -= lowbit(y))
+            ans = max(h[y], ans);
+    }
+    return ans;
+}
+```
+
 ## 线段树
 
 RMQ 常用算法，树状数组基于区间划分，线段树则是基于分治。
