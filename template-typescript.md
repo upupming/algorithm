@@ -15,21 +15,21 @@ header-includes:
 > 为了训练自己的 JavaScript/TypeScript 编程能力，能用 TS 写的地方尽量用，不行再换 C++
 
 - [算法模板（JS/TS 版本）](#算法模板jsts-版本)
-    - [输入](#输入)
-        - [`readline` 输入](#readline-输入)
-        - [`process.stdin.on` 输入](#processstdinon-输入)
-        - [fs 输入](#fs-输入)
-    - [常用函数缩写](#常用函数缩写)
-    - [快速幂](#快速幂)
-    - [邻接表](#邻接表)
-    - [快速幂](#快速幂-1)
-    - [并查集](#并查集)
-    - [拓扑排序](#拓扑排序)
-    - [字符串哈希](#字符串哈希)
-    - [线段树](#线段树)
-        - [单点修改](#单点修改)
-        - [区间修改](#区间修改)
-        - [同时支持单点修改和区间修改](#同时支持单点修改和区间修改)
+  - [输入](#输入)
+    - [`readline` 输入](#readline-输入)
+    - [`process.stdin.on` 输入](#processstdinon-输入)
+    - [fs 输入](#fs-输入)
+  - [常用函数缩写](#常用函数缩写)
+  - [快速幂](#快速幂)
+  - [邻接表](#邻接表)
+  - [快速幂](#快速幂-1)
+  - [并查集](#并查集)
+  - [拓扑排序](#拓扑排序)
+  - [字符串哈希](#字符串哈希)
+  - [线段树](#线段树)
+    - [单点修改](#单点修改)
+    - [区间修改](#区间修改)
+    - [同时支持单点修改和区间修改](#同时支持单点修改和区间修改)
 
 ## 输入
 
@@ -283,6 +283,85 @@ const hash = (i, j) => {
 统一使用动态开点线段树。
 
 ### 单点修改
+
+```ts
+class Node {
+  start: number
+  end: number
+  max: number
+  min: number
+  left: null | Node = null
+  right: null | Node = null
+  constructor (start: number, end: number) {
+    this.start = start
+    this.end = end
+    this.max = -1e10
+    this.min = 1e10
+  }
+}
+
+// https://www.acwing.com/activity/content/code/content/167900/
+class SegmentTree {
+  root: Node
+  constructor (start: number, end: number) {
+    this.root = new Node(start, end)
+  }
+
+  modify (pos: number, val: number) {
+    this.modifyNode(this.root, pos, val)
+  }
+
+  modifyNode (node: Node, pos: number, val: number) {
+    if (node.start === pos && node.end === pos) {
+      node.max = node.min = val
+    } else {
+      this.pushdown(node)
+      if (pos <= node.left!.end) this.modifyNode(node.left!, pos, val)
+      if (pos >= node.right!.start) this.modifyNode(node.right!, pos, val)
+      this.pushup(node)
+    }
+  }
+
+  // 这里 pushdown 的作用只是动态创建新节点
+  pushdown (node: Node) {
+    const mid = node.start + node.end >> 1
+    node.left ??= new Node(node.start, mid)
+    node.right ??= new Node(mid + 1, node.end)
+  }
+
+  pushup (node: Node) {
+    node.max = Math.max(node.left!.max, node.right!.max)
+    node.min = Math.min(node.left!.min, node.right!.min)
+  }
+
+  query (start: number, end: number) {
+    return this.queryNode(this.root, start, end)
+  }
+
+  queryNode (node: Node, start: number, end: number) {
+    if (start <= node.start && end >= node.end) {
+      return {
+        max: node.max,
+        min: node.min
+      }
+    }
+
+    this.pushdown(node)
+    const ans = { max: -1e10, min: 1e10 }
+    if (start <= node.left!.end) {
+      const tmp = this.queryNode(node.left!, start, end)
+      ans.max = Math.max(ans.max, tmp.max)
+      ans.min = Math.min(ans.min, tmp.min)
+    }
+    if (end >= node.right!.start) {
+      const tmp = this.queryNode(node.right!, start, end)
+      ans.max = Math.max(ans.max, tmp.max)
+      ans.min = Math.min(ans.min, tmp.min)
+    }
+    return ans
+  }
+}
+```
 
 > https://leetcode.com/problems/longest-substring-of-one-repeating-character/
 
